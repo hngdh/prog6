@@ -2,14 +2,14 @@ package common.command_manager;
 
 import server.commands.*;
 
-import java.util.HashMap;
+import java.util.TreeMap;
 
 /**
  * The {@code CommandManager} class manages the registration and retrieval of commands. It stores
  * commands in a HashMap for quick access, including properties' getters.
  */
 public class CommandManager {
-    private final HashMap<String, Command> commandCollection = new HashMap<>();
+    private final TreeMap<String, Command> commandCollection = new TreeMap<>();
 
     public CommandManager() {
     }
@@ -42,7 +42,7 @@ public class CommandManager {
         return commandCollection.get(commandName);
     }
 
-    public HashMap<String, Command> getCommandCollection() {
+    public TreeMap<String, Command> getCommandCollection() {
         return commandCollection;
     }
 

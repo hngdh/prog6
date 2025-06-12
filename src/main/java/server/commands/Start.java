@@ -6,6 +6,8 @@ import common.exceptions.LogException;
 import common.packets.Request;
 import server.iostream.Receiver;
 
+import java.util.List;
+
 public class Start extends Command {
     private Receiver receiver;
 
@@ -19,7 +21,8 @@ public class Start extends Command {
     }
 
     @Override
-    public void execute(Request request) throws LogException {
+    public List<String> execute(Request request) throws LogException {
         receiver.start();
+        return null;
     }
 }

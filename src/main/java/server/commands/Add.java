@@ -5,11 +5,13 @@ import common.enums.CommandTypes;
 import common.packets.Request;
 import server.iostream.Receiver;
 
+import java.util.List;
+
 public class Add extends Command {
     private Receiver receiver;
 
     public Add() {
-        super("add","{element}","add element to collection",CommandTypes.INPUT_NEEDED,CommandFormats.WITHOUT_ARG);
+        super("add", "{element}", "add element to collection", CommandTypes.INPUT_NEEDED, CommandFormats.WITHOUT_ARG);
     }
 
     public void setReceiver(Receiver receiver) {
@@ -17,7 +19,8 @@ public class Add extends Command {
     }
 
     @Override
-    public void execute(Request request) {
+    public List<String> execute(Request request) {
         receiver.add(request);
+        return null;
     }
 }

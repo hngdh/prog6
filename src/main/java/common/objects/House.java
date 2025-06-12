@@ -1,12 +1,13 @@
 package common.objects;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * The {@code House} class represents a house with attributes name, construction year and number of
  * lifts. It contains properties' getters and setters.
  */
-public class House {
+public class House implements Serializable {
     private String name; // Поле не может быть null
     private Integer year; // Значение поля должно быть больше 0
     private Long numberOfLifts; // Значение поля должно быть больше 0

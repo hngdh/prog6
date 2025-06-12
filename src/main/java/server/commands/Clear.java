@@ -5,6 +5,8 @@ import common.enums.CommandTypes;
 import common.packets.Request;
 import server.iostream.Receiver;
 
+import java.util.List;
+
 public class Clear extends Command {
     private Receiver receiver;
 
@@ -17,7 +19,8 @@ public class Clear extends Command {
     }
 
     @Override
-    public void execute(Request request) {
+    public List<String> execute(Request request) {
         receiver.clear();
+        return null;
     }
 }

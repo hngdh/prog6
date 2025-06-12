@@ -11,6 +11,6 @@ public class WrongKeyException extends RuntimeException {
 
     @Override
     public String toString() {
-        return "Wrong key or key is not listed!";
+        return "Wrong key or key not listed!";
     }
 }

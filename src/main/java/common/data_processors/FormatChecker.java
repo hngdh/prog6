@@ -1,4 +1,4 @@
-package client.processors;
+package common.data_processors;
 
 import common.command_manager.CommandManager;
 import common.enums.CommandFormats;

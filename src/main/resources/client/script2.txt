@@ -28,3 +28,4 @@ yes
 1
 1
 info
+execute_script script.txt

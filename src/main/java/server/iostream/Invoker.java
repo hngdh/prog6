@@ -6,6 +6,9 @@ import common.io.Printer;
 import common.packets.Request;
 import server.commands.Command;
 
+import java.net.SocketAddress;
+import java.util.List;
+
 /**
  * The {@code Invoker} class is responsible for executing commands. It receives a command name and a
  * request, retrieves the corresponding command from the {@link CommandManager}, sets the {@link
@@ -20,10 +23,10 @@ public class Invoker {
         this.receiver = receiver;
     }
 
-    public void call(String command, Request request) throws LogException {
-        Printer.printCondition("> Executing " + command);
-        Command cmd = commandManager.getCommand(command);
+    public List<String> call(SocketAddress port, Request request) throws LogException {
+        Printer.printCondition("> Executing " + request.getCommand());
+        Command cmd = commandManager.getCommand(request.getCommand());
         cmd.setReceiver(receiver);
-        cmd.execute(request);
+        return cmd.execute(request);
     }
 }

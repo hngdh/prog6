@@ -5,11 +5,13 @@ import common.enums.CommandTypes;
 import common.packets.Request;
 import server.iostream.Receiver;
 
+import java.util.List;
+
 public class Help extends Command {
     private Receiver receiver;
 
     public Help() {
-        super("help","","display this dialog",CommandTypes.NO_INPUT_NEEDED,CommandFormats.WITHOUT_ARG);
+        super("help", "", "display this dialog", CommandTypes.NO_INPUT_NEEDED, CommandFormats.WITHOUT_ARG);
     }
 
     public void setReceiver(Receiver receiver) {
@@ -17,7 +19,8 @@ public class Help extends Command {
     }
 
     @Override
-    public void execute(Request request) {
-        receiver.help();
+    public List<String> execute(Request request) {
+
+        return receiver.help();
     }
 }

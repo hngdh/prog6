@@ -1,23 +1,22 @@
 package client.read_mode;
 
-import client.processors.ObjBuilder;
-import client.processors.input.InputChecker;
-import client.processors.input.InputReader;
-import client.processors.input.InputSplitter;
-import client.processors.input.ObjInputChecker;
+import client.iostream.Renderer;
+import client.network.ClientNetwork;
 import common.command_manager.CommandManager;
+import common.data_processors.ObjBuilder;
+import common.data_processors.input.InputChecker;
+import common.data_processors.input.InputReader;
+import common.data_processors.input.InputSplitter;
+import common.data_processors.input.ObjInputChecker;
 import common.enums.CommandTypes;
 import common.enums.FlatDataTypes;
 import common.enums.HouseDataTypes;
-import common.exceptions.LogException;
-import common.exceptions.WrongCommandException;
-import common.exceptions.WrongFileInputException;
-import common.exceptions.WrongInputException;
+import common.exceptions.*;
 import common.io.LogUtil;
 import common.io.Printer;
 import common.objects.Flat;
 import common.packets.Request;
-import server.iostream.Invoker;
+import common.packets.Response;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -25,17 +24,18 @@ import java.util.List;
 
 /**
  * The {@code FileReaderMode} class implements the {@link ReaderMode} interface and provides
- * functionality to read commands and data from a processors and execute them.
+ * functionality to read commands and data from a data_processors and execute them.
  */
 public class FileReaderMode implements ReaderMode {
     private final CommandManager commandManager;
+    private final String fileDir = "src\\main\\resources\\client\\";
 
     public FileReaderMode() {
         commandManager = new CommandManager();
         commandManager.init();
     }
 
-    public Flat build(LinkedList commandList) throws LogException, IOException {
+    public Flat build(LinkedList<String> commandList) throws LogException, IOException {
         List<String> flatInfo = new LinkedList<>();
         List<String> houseInfo = new LinkedList<>();
 
@@ -48,7 +48,7 @@ public class FileReaderMode implements ReaderMode {
         flatInfo.add(getFlatFileInput(commandList, FlatDataTypes.SPACE));
         flatInfo.add(getFlatFileInput(commandList, FlatDataTypes.HEATING));
         flatInfo.add(getFlatFileInput(commandList, FlatDataTypes.TRANSPORT));
-        if (commandList.getFirst().toString().equals("yes")) {
+        if (commandList.getFirst().equals("yes")) {
             commandList.removeFirst();
             houseInfo.add(getHouseFileInput(commandList, HouseDataTypes.STRING));
             houseInfo.add(getHouseFileInput(commandList, HouseDataTypes.YEAR));
@@ -63,8 +63,8 @@ public class FileReaderMode implements ReaderMode {
         return ObjBuilder.buildFlat(flatInfo, houseInfo);
     }
 
-    public String getFlatFileInput(LinkedList commandList, FlatDataTypes dataType) {
-        String str = commandList.getFirst().toString();
+    public String getFlatFileInput(LinkedList<String> commandList, FlatDataTypes dataType) {
+        String str = commandList.getFirst();
         commandList.removeFirst();
         boolean check = ObjInputChecker.checkFlatInput(str, dataType);
         if (check) {
@@ -74,8 +74,8 @@ public class FileReaderMode implements ReaderMode {
         }
     }
 
-    public String getHouseFileInput(LinkedList commandList, HouseDataTypes dataType) {
-        String str = commandList.getFirst().toString();
+    public String getHouseFileInput(LinkedList<String> commandList, HouseDataTypes dataType) {
+        String str = commandList.getFirst();
         commandList.removeFirst();
         boolean check = ObjInputChecker.checkHouseInput(str, dataType);
         if (check) {
@@ -85,8 +85,8 @@ public class FileReaderMode implements ReaderMode {
         }
     }
 
-    public String getCommand(LinkedList commandList) {
-        String input = commandList.getFirst().toString();
+    public String getCommand(LinkedList<String> commandList) {
+        String input = commandList.getFirst();
         commandList.removeFirst();
         if (input == null || input.isEmpty()) return null;
         if (!InputChecker.checkInput(input)) {
@@ -98,36 +98,88 @@ public class FileReaderMode implements ReaderMode {
     }
 
     @Override
-    public void executeMode(Invoker invoker, String commandName, String currentFile)
-            throws LogException {
+    public void execute(Renderer renderer, ClientNetwork clientNetwork, String commandName, String currentFile) throws LogException {
+        LinkedList<String> commandList = seekForward(currentFile);
         try {
-            invoker.call("execute_script", new Request(null, null));
-            InputReader inputReader = new InputReader();
-            inputReader.setReader(currentFile);
-            LinkedList commandList = inputReader.readLines();
             while (!commandList.isEmpty()) {
                 String input;
                 if ((input = getCommand(commandList)) != null) {
                     String command = InputSplitter.getCommand(input);
                     Printer.printInfo(command);
-                    if (!command.equals("execute_script")) {
-                        String argument = InputSplitter.getArg(input);
-                        CommandTypes type = commandManager.getCommand(command).getCommandClassifier();
-                        switch (type) {
-                            case NO_INPUT_NEEDED -> invoker.call(command, new Request(argument, null));
-                            case INPUT_NEEDED -> {
-                                Flat flat = build(commandList);
-                                invoker.call(command, new Request(argument, flat));
-                            }
+                    String argument = InputSplitter.getArg(input);
+                    CommandTypes type = commandManager.getCommand(command).getCommandClassifier();
+                    switch (type) {
+                        case NO_INPUT_NEEDED -> {
+                            Response responce = clientNetwork.respond(new Request(command, argument, null));
+                            renderer.printResponse(responce);
                         }
-                    } else {
-                        Printer.printInfo("Skipped command execute_script");
+                        case INPUT_NEEDED -> {
+                            Flat flat = build(commandList);
+                            Response response = clientNetwork.respond(new Request(command, argument, flat));
+                            renderer.printResponse(response);
+                        }
                     }
                 }
             }
         } catch (IOException e) {
-            LogUtil.log(e);
-            throw new LogException();
+            LogUtil.logClientError(e);
+            throw new FileNotFoundException();
         }
+    }
+
+    private LinkedList<String> seekForward(String currentFile) throws LogException {
+        int loopCount = 0;
+        LinkedList<String> fileLoop = new LinkedList<>();
+        LinkedList<String> commandList = new LinkedList<>();
+        try {
+            InputReader inputReader = new InputReader();
+            inputReader.setReader(fileDir + currentFile);
+            LinkedList<String> commandLines = inputReader.readLines();
+            for (String commandLine : commandLines) {
+                String command = InputSplitter.getCommand(commandLine);
+                if (!command.equals("execute_script")) {
+                    commandList.add(commandLine);
+                } else {
+                    fileLoop.add(currentFile);
+                    String fileName = InputSplitter.getArg(commandLine);
+                    commandList = seekForward(commandList, fileName, loopCount, fileLoop);
+                }
+            }
+        } catch (IOException e) {
+            LogUtil.logClientError(e);
+        }
+        return commandList;
+    }
+
+    private LinkedList<String> seekForward(LinkedList<String> commandList, String currentFile, int loopCount, LinkedList<String> fileLoop) throws LogException {
+        loopCount += 1;
+        if (!fileLoop.contains(currentFile)) {
+            fileLoop.add(currentFile);
+            try {
+                InputReader inputReader = new InputReader();
+                inputReader.setReader(fileDir + currentFile);
+                LinkedList<String> commandLines = inputReader.readLines();
+                for (String commandLine : commandLines) {
+                    String command = InputSplitter.getCommand(commandLine);
+                    if (!command.equals("execute_script")) {
+                        commandList.add(commandLine);
+                    } else {
+                        fileLoop.add(currentFile);
+                        String fileName = InputSplitter.getArg(commandLine);
+                        commandList = seekForward(commandList, fileName, loopCount, fileLoop);
+                    }
+                }
+            } catch (IOException e) {
+                LogUtil.logClientError(e);
+            }
+        } else if (loopCount == 10) {
+            Printer.printCondition(loopCount + " times jumping is enough I think");
+        } else if (loopCount > 5) {
+            Printer.printCondition("You really want to jump more than " + (loopCount - 1) + " times? That's wild");
+        } else {
+            Printer.printCondition("File loop detected, executing commands in all files once");
+            return commandList;
+        }
+        return commandList;
     }
 }

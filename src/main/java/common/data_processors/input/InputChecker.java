@@ -1,5 +1,6 @@
-package client.processors.input;
+package common.data_processors.input;
 
+import common.exceptions.LogException;
 import common.exceptions.WrongInputException;
 import common.io.LogUtil;
 import common.io.Printer;
@@ -10,8 +11,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
- * The {@code InputChecker} class provides static utility methods for validating user processors. It
- * includes methods for checking the general format of processors, validating strings, checking if a
+ * The {@code InputChecker} class provides static utility methods for validating user data_processors. It
+ * includes methods for checking the general format of data_processors, validating strings, checking if a
  * string represents an integer, determining if a string is empty, and prompting the user for a
  * yes/no confirmation.
  */
@@ -51,7 +52,7 @@ public class InputChecker {
         return input.equalsIgnoreCase("false") || input.equalsIgnoreCase("true");
     }
 
-    public static boolean checkOptional(String act, String description) {
+    public static boolean checkOptional(String act, String description) throws LogException {
         try {
             Printer.printInfo("Do you want to " + act + " " + description + "? (yes/no)");
             InputReader inputReader = new InputReader();
@@ -72,7 +73,7 @@ public class InputChecker {
                 }
             }
         } catch (IOException e) {
-            LogUtil.log(e);
+            LogUtil.logClientError(e);
         }
         return false;
     }

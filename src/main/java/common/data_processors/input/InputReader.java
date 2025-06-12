@@ -1,4 +1,4 @@
-package client.processors.input;
+package common.data_processors.input;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -6,8 +6,8 @@ import java.io.InputStreamReader;
 import java.util.LinkedList;
 
 /**
- * The {@code InputReader} class provides a convenient way to read processors from either a processors or the
- * standard processors (console). It uses an {@link InputStreamReader} to read characters from the processors
+ * The {@code InputReader} class provides a convenient way to read data_processors from either a data_processors or the
+ * standard data_processors (console). It uses an {@link InputStreamReader} to read characters from the data_processors
  * stream and provides a method to read a line of text.
  */
 public class InputReader {
@@ -38,7 +38,7 @@ public class InputReader {
         return currentLine.toString();
     }
 
-    public LinkedList readLines() throws IOException {
+    public LinkedList<String> readLines() throws IOException {
         LinkedList<String> scriptLines = new LinkedList<>();
         String line;
         while (!(line = readLine()).isEmpty()) {

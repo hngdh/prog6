@@ -1,4 +1,4 @@
-package client.processors;
+package common.data_processors;
 
 import common.enums.Transport;
 import common.exceptions.LogException;
@@ -50,8 +50,8 @@ public class ObjBuilder {
 
             flat.setHouse(buildHouse(houseInfo));
         } catch (IllegalArgumentException e) {
-            LogUtil.log(e);
-            throw new LogException();
+            LogUtil.logClientError(e);
+
         }
         return flat;
     }
@@ -67,8 +67,8 @@ public class ObjBuilder {
                 house.setNumberOfLifts(Long.parseLong(houseInfo.get(2)));
             }
         } catch (Exception e) {
-            LogUtil.log(e);
-            throw new LogException();
+            LogUtil.logClientError(e);
+
         }
         return house;
     }

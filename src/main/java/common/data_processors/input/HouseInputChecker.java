@@ -1,7 +1,7 @@
-package client.processors.input;
+package common.data_processors.input;
 
 /**
- * The {@code HouseInputChecker} class provides static methods for validating processors strings related
+ * The {@code HouseInputChecker} class provides static methods for validating data_processors strings related
  * to {@link common.objects.House} properties. It extends the {@link InputChecker} class and provides
  * specific checks for name, construction year and number of lifts.
  */

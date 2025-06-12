@@ -2,8 +2,8 @@ package common.exceptions;
 
 /**
  * The {@code WrongFileInputException} class represents an exception that is thrown when the user
- * provides invalid processors within a processors. It extends the {@code Exception} class and provides a
- * specific error message to inform the user about the invalid processors within a processors.
+ * provides invalid data_processors within a data_processors. It extends the {@code Exception} class and provides a
+ * specific error message to inform the user about the invalid data_processors within a data_processors.
  */
 public class WrongFileInputException extends RuntimeException {
     public WrongFileInputException() {
@@ -11,6 +11,6 @@ public class WrongFileInputException extends RuntimeException {
 
     @Override
     public String toString() {
-        return "Wrong processors processors!";
+        return "Wrong file input!";
     }
 }

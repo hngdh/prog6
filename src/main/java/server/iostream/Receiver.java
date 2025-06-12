@@ -7,9 +7,7 @@ import common.objects.Flat;
 import common.packets.Request;
 import server.data.CollectionManager;
 
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * The {@code Receiver} class contains the actual implementation of the commands. It interacts with
@@ -18,9 +16,9 @@ import java.util.Objects;
  * appropriate methods of the CollectionManager.
  */
 public class Receiver {
+    public static String programState;
     private final CollectionManager collectionManager;
     private final CommandManager commandManager;
-    String programState;
 
     public Receiver(CollectionManager collectionManager, CommandManager commandManager) {
         this.commandManager = commandManager;
@@ -30,11 +28,7 @@ public class Receiver {
 
     private boolean notEmpty() {
         LinkedList<Flat> collection = collectionManager.getCollection();
-        if (collection.isEmpty()) {
-            Printer.printResult("The collection is empty.");
-            return false;
-        }
-        return true;
+        return !collection.isEmpty();
     }
 
     public void exit() {
@@ -48,37 +42,66 @@ public class Receiver {
         } else Printer.printResult("Program already started");
     }
 
-    public void help() {
-        commandManager
-                .getCommandCollection()
-                .forEach((name, command) -> Printer.printResult(command.getCommandInfo()));
+    public List<String> help() {
+        List<String> result = new ArrayList<>();
+        commandManager.getCommandCollection().forEach((name, command) -> {
+            if (!name.equals("start") && !name.equals("save")) {
+                result.add(command.getCommandInfo());
+            }
+        });
+        return result;
     }
 
     public void clear() {
         collectionManager.clear();
     }
 
-    public void info() {
-        Printer.printResult("Type of DS: LinkedList");
-        Printer.printResult("Number of elements: " + collectionManager.getCollection().size());
+    public List<String> info() {
+        List<String> result = new ArrayList<>();
+        result.add("Type of DS: LinkedList");
+        result.add("Number of elements: " + collectionManager.getCollection().size());
+        return result;
     }
 
-    public void show() {
+    public List<String> show() {
+        List<String> result = new ArrayList<>();
         if (notEmpty()) {
-            collectionManager.getCollection().forEach(Flat::printEverything);
+            collectionManager.getCollection().forEach(flat -> {
+                result.addAll(flat.getEverything());
+                result.add("");
+            });
+        } else {
+            result.add("This collection is empty");
         }
+        return result;
     }
 
-    public void sort() {
-        collectionManager.sort();
+    public List<String> sort() {
+        List<String> result = new ArrayList<>();
+        if (notEmpty()) {
+            collectionManager.sort();
+        } else {
+            result.add("This collection is empty");
+        }
+        return result;
     }
 
     public void execute_script() {
         Printer.printCondition("File being executed...");
     }
 
-    public void min_by_coordinates() {
-        collectionManager.min_by_coordinates();
+    public List<String> min_by_coordinates() {
+        List<String> result = new ArrayList<>();
+        if (notEmpty()) {
+            collectionManager.min_by_coordinates();
+            for (Flat flat : collectionManager.getCollection()) {
+                result.addAll(flat.getEverything());
+                result.add("");
+            }
+        } else {
+            result.add("This collection is empty");
+        }
+        return result;
     }
 
     public void save() throws LogException {
@@ -89,38 +112,80 @@ public class Receiver {
         collectionManager.add(request);
     }
 
-    public void filter_contains_name(Request request) {
+    public List<String> filter_contains_name(Request request) {
+        List<String> result = new ArrayList<>();
         if (notEmpty()) {
             String name = request.getArgument();
             for (Flat flat : collectionManager.getCollection()) {
-                if (flat.getName().contains(name)) flat.printEverything();
+                if (flat.getName().contains(name)) {
+                    result.addAll(flat.getEverything());
+                    result.add("");
+                }
+                ;
             }
+        } else {
+            result.add("This collection is empty");
         }
+        return result;
     }
 
-    public void print_field_ascending_house() {
+    public List<String> print_field_ascending_house() {
+        List<String> result = new ArrayList<>();
         if (notEmpty()) {
             LinkedList<Flat> list = new LinkedList<>();
             for (Flat flat : collectionManager.getCollection())
                 if (flat.getHouse() != null) list.add(flat);
             list.sort(Comparator.comparing(a -> a.getHouse().getName()));
-            for (Flat flat : list) flat.printHouse();
+            for (Flat flat : list) result.add(flat.getPropsHouse().toString());
+        } else {
+            result.add("This collection is empty");
         }
+        return result;
     }
 
-    public void remove_by_id(Request request) {
-        collectionManager.remove_by_id(request);
+    public List<String> remove_by_id(Request request) {
+        List<String> result = new ArrayList<>();
+        int id = Integer.parseInt(request.getArgument());
+        if (notEmpty()) {
+            int collectionSize = collectionManager.getCollection().size();
+            if (id <= collectionSize) {
+                collectionManager.remove_by_id(id);
+            } else {
+                result.add("Index out of bound (maximum " + collectionSize + ")");
+            }
+        } else {
+            result.add("This collection is empty");
+        }
+        return result;
     }
 
-    public void remove_first() {
-        collectionManager.remove_first();
+    public List<String> remove_first() {
+        List<String> result = new ArrayList<>();
+        if (notEmpty()) {
+            collectionManager.remove_first();
+        } else {
+            result.add("This collection is empty");
+        }
+        return result;
     }
 
-    public void remove_lower(Request request) {
-        collectionManager.remove_lower(request);
+    public List<String> remove_lower(Request request) {
+        List<String> result = new ArrayList<>();
+        if (notEmpty()) {
+            collectionManager.remove_lower(request);
+        } else {
+            result.add("This collection is empty");
+        }
+        return result;
     }
 
-    public void update(Request request) {
-        collectionManager.update(request);
+    public List<String> update(Request request) {
+        List<String> result = new ArrayList<>();
+        if (notEmpty()) {
+            collectionManager.update(request);
+        } else {
+            result.add("This collection is empty");
+        }
+        return result;
     }
 }

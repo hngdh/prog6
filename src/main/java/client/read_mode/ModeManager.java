@@ -1,14 +1,15 @@
 package client.read_mode;
 
+import client.iostream.Renderer;
+import client.network.ClientNetwork;
 import common.exceptions.LogException;
-import server.iostream.Invoker;
 
 import java.io.IOException;
 import java.util.HashMap;
 
 /**
  * The {@code ModeManager} class manages different reading modes for commands, such as reading from
- * the console or reading from processors. It allows associating specific commands with specific {@link
+ * the console or reading from data_processors. It allows associating specific commands with specific {@link
  * ReaderMode} implementations.
  */
 public class ModeManager {
@@ -25,8 +26,7 @@ public class ModeManager {
         readModes.put(command, readMode);
     }
 
-    public void call(Invoker invoker, String commandName, String arg)
-            throws LogException, IOException {
-        readModes.get(commandName).executeMode(invoker, commandName, arg);
+    public void call(Renderer renderer, ClientNetwork clientNetwork, String commandName, String arg) throws LogException, IOException {
+        readModes.get(commandName).execute(renderer, clientNetwork, commandName, arg);
     }
 }

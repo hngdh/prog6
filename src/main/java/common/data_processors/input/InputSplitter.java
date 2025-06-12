@@ -1,7 +1,7 @@
-package client.processors.input;
+package common.data_processors.input;
 
 /**
- * The {@code InputSplitter} class provides static utility methods for splitting processors into two
+ * The {@code InputSplitter} class provides static utility methods for splitting data_processors into two
  * parts, representing command and its argument.
  */
 public class InputSplitter {

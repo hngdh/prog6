@@ -1,5 +1,6 @@
 package server.data;
 
+import common.data_processors.input.InputReader;
 import common.exceptions.LogException;
 import common.exceptions.WrongDataException;
 import common.exceptions.WrongKeyException;
@@ -9,7 +10,6 @@ import common.objects.Flat;
 import common.packets.Request;
 import server.data_processors.CSVReader;
 import server.data_processors.CSVWriter;
-import server.data_processors.InputReader;
 
 import java.io.IOException;
 import java.util.Comparator;
@@ -18,7 +18,7 @@ import java.util.LinkedList;
 /**
  * The {@code CollectionManager} class manages a collection of {@link Flat} objects stored in a
  * {@link LinkedList}. It provides methods for adding, removing, updating, and retrieving elements
- * from the collection. It also handles saving and loading the collection to/from a CSV processors.
+ * from the collection. It also handles saving and loading the collection to/from a CSV data_processors.
  */
 public class CollectionManager {
     private final LinkedList<Flat> collection = new LinkedList<>();
@@ -26,14 +26,6 @@ public class CollectionManager {
 
     public CollectionManager(String fileName) {
         this.fileName = fileName;
-    }
-
-    private boolean notEmpty() {
-        if (collection.isEmpty()) {
-            Printer.printResult("The collection is empty.");
-            return false;
-        }
-        return true;
     }
 
     public LinkedList<Flat> getCollection() {
@@ -50,15 +42,11 @@ public class CollectionManager {
     }
 
     public void sort() {
-        if (notEmpty()) {
-            collection.sort(Comparator.comparing(Flat::getName));
-        }
+        collection.sort(Comparator.comparing(Flat::getName));
     }
 
     public void min_by_coordinates() {
-        if (notEmpty()) {
-            collection.sort(Comparator.comparing(a -> Float.parseFloat(a.getCoordinates().getX()) + Float.parseFloat(a.getCoordinates().getY())));
-        }
+        collection.sort(Comparator.comparing(a -> Float.parseFloat(a.getCoordinates().getX()) + Float.parseFloat(a.getCoordinates().getY())));
     }
 
     public void save() throws LogException {
@@ -68,8 +56,7 @@ public class CollectionManager {
                 writer.writeLines(flat.getAllFields());
             }
         } catch (IOException e) {
-            LogUtil.log(e);
-            throw new LogException();
+            LogUtil.logServerError(e);
         }
     }
 
@@ -78,27 +65,20 @@ public class CollectionManager {
         collection.add(flat);
     }
 
-    public void remove_by_id(Request request) {
-        if (notEmpty()) {
-            int id = Integer.parseInt(request.getArgument());
-            collection.remove(id - 1);
-        }
+    public void remove_by_id(int id) {
+        collection.remove(id - 1);
     }
 
     public void remove_first() {
-        if (notEmpty()) {
-            collection.removeFirst();
-        }
+        collection.removeFirst();
     }
 
     public void remove_lower(Request request) {
-        if (notEmpty()) {
-            Flat compareFlat = request.getFlat();
-            LinkedList<Flat> tempList = new LinkedList<>(collection);
-            for (Flat flat : tempList) {
-                if (flat.toString().compareTo(compareFlat.toString()) < 0) {
-                    collection.remove(flat);
-                }
+        Flat compareFlat = request.getFlat();
+        LinkedList<Flat> tempList = new LinkedList<>(collection);
+        for (Flat flat : tempList) {
+            if (flat.toString().compareTo(compareFlat.toString()) < 0) {
+                collection.remove(flat);
             }
         }
     }
@@ -138,9 +118,8 @@ public class CollectionManager {
                 counter++;
             }
         } catch (IOException e) {
-            LogUtil.log(e);
-            throw new LogException();
+            LogUtil.logServerError(e);
         }
-        Printer.printResult("Loaded " + collection.size() + " flat(s) from the processors.");
+        Printer.printResult("Loaded " + collection.size() + " flat(s) from file.");
     }
 }

@@ -5,11 +5,13 @@ import common.enums.CommandTypes;
 import common.packets.Request;
 import server.iostream.Receiver;
 
+import java.util.List;
+
 public class MinByCoordinates extends Command {
     private Receiver receiver;
 
     public MinByCoordinates() {
-        super("min_by_coordinates","","display object from collection with minimum coordinate",CommandTypes.NO_INPUT_NEEDED,CommandFormats.WITHOUT_ARG);
+        super("min_by_coordinates", "", "display object from collection with minimum coordinate", CommandTypes.NO_INPUT_NEEDED, CommandFormats.WITHOUT_ARG);
     }
 
     public void setReceiver(Receiver receiver) {
@@ -17,7 +19,8 @@ public class MinByCoordinates extends Command {
     }
 
     @Override
-    public void execute(Request request) {
-        receiver.min_by_coordinates();
+    public List<String> execute(Request request) {
+
+        return receiver.min_by_coordinates();
     }
 }

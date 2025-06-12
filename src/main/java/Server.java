@@ -1,5 +1,5 @@
 import common.exceptions.LogException;
-import server.iostream.Handler;
+import server.network.ServerNetwork;
 
 /**
  * The {@code Server} class serves as the entry point for the application. It initializes and starts
@@ -8,8 +8,7 @@ import server.iostream.Handler;
 public class Server {
     public static void main(String[] args) throws LogException {
         String fileName = "src\\main\\resources\\server\\data.csv";
-        Handler handler = new Handler();
-        handler.prepare(fileName);
-        handler.run();
+        ServerNetwork serverNetwork = new ServerNetwork();
+        serverNetwork.init(fileName);
     }
 }

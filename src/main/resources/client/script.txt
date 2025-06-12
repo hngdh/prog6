@@ -1,3 +1,4 @@
 remove_first
 sort
-show
+info
+execute_script script2.txt

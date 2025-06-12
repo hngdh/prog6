@@ -6,6 +6,8 @@ import common.exceptions.LogException;
 import common.packets.Request;
 import server.iostream.Receiver;
 
+import java.util.List;
+
 public abstract class Command {
     private final String name;
     private final String argument;
@@ -23,7 +25,7 @@ public abstract class Command {
 
     public abstract void setReceiver(Receiver receiver);
 
-    public abstract void execute(Request request) throws LogException;
+    public abstract List<String> execute(Request request) throws LogException;
 
     public String getName() {
         return name;

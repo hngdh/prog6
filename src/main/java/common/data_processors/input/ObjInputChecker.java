@@ -1,10 +1,10 @@
-package client.processors.input;
+package common.data_processors.input;
 
 import common.enums.FlatDataTypes;
 import common.enums.HouseDataTypes;
 
 /**
- * The {@code ObjInputChecker} class provides static methods for validating processors strings for
+ * The {@code ObjInputChecker} class provides static methods for validating data_processors strings for
  * different object properties, specifically for {@link common.objects.Flat} and {@link
  * common.objects.House} objects.
  */

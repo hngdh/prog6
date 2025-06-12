@@ -1,8 +1,9 @@
-package client.processors;
+package server.data_processors;
 
-import client.processors.input.ObjInputChecker;
+import common.data_processors.input.ObjInputChecker;
 import common.enums.FlatDataTypes;
 import common.enums.HouseDataTypes;
+import common.exceptions.LogException;
 import common.exceptions.WrongDataException;
 import common.io.LogUtil;
 
@@ -15,7 +16,7 @@ import java.util.List;
 
 /**
  * The {@code FileProcessor} class is responsible for validating and processing data read from a CSV
- * processors. It checks the format and validity of the data for both {@link common.objects.Flat} and {@link
+ * data_processors. It checks the format and validity of the data for both {@link common.objects.Flat} and {@link
  * common.objects.House} objects. It uses {@link ObjInputChecker} to perform specific checks on
  * individual data fields.
  */
@@ -23,7 +24,7 @@ public class FileProcessor {
     public FileProcessor() {
     }
 
-    public List<String> checkFlatInfo(String str) throws WrongDataException {
+    public List<String> checkFlatInfo(String str) throws WrongDataException, LogException {
         List<String> args = Arrays.asList(str.split(","));
         if (args.size() != 12) {
             throw new WrongDataException();
@@ -36,7 +37,7 @@ public class FileProcessor {
         try {
             LocalDate.parse(args.get(3), formatter);
         } catch (DateTimeParseException e) {
-            LogUtil.log(e);
+            LogUtil.logServerError(e);
             throw new WrongDataException();
         }
         checks.add(ObjInputChecker.checkFlatInput(args.get(4), FlatDataTypes.AREA));

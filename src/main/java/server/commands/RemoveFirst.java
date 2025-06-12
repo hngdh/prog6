@@ -5,11 +5,13 @@ import common.enums.CommandTypes;
 import common.packets.Request;
 import server.iostream.Receiver;
 
+import java.util.List;
+
 public class RemoveFirst extends Command {
     private Receiver receiver;
 
     public RemoveFirst() {
-        super("remove_first","","remove first element in collection",CommandTypes.NO_INPUT_NEEDED,CommandFormats.WITHOUT_ARG);
+        super("remove_first", "", "remove first element in collection", CommandTypes.NO_INPUT_NEEDED, CommandFormats.WITHOUT_ARG);
     }
 
     public void setReceiver(Receiver receiver) {
@@ -17,7 +19,8 @@ public class RemoveFirst extends Command {
     }
 
     @Override
-    public void execute(Request request) {
-        receiver.remove_first();
+    public List<String> execute(Request request) {
+
+        return receiver.remove_first();
     }
 }

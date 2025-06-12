@@ -1,10 +1,11 @@
 package common.objects;
 
 import common.enums.Transport;
-import common.io.Printer;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  * The {@code Flat} class represents a flat with attributes such as ID, name, coordinates, ... and
  * contains getters and setters, as well as needed methods to print flat's information.
  */
-public class Flat {
+public class Flat implements Serializable {
     private Integer
             id; // Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно
     // быть уникальным, Значение этого поля должно генерироваться автоматически
@@ -111,30 +112,37 @@ public class Flat {
         this.house = house;
     }
 
-    public void printEverything() {
-        Printer.printCondition("*Flat's information*");
-        Printer.printResult("ID: " + this.id);
-        Printer.printResult("Name: " + this.name);
-        Printer.printResult("Coordinate: " + this.coordinates.toString());
-        Printer.printResult(
-                "Creation date: " + this.creationDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
-        Printer.printResult("Area: " + this.area);
-        Printer.printResult("Number of rooms: " + this.numberOfRooms);
-        Printer.printResult("Living space: " + this.livingSpace);
-        Printer.printResult("Central heating: " + this.centralHeating);
-        Printer.printResult("Transport: " + this.transport);
-        printHouse();
+    public List<String> getEverything() {
+        List<String> props = new ArrayList<>();
+        props.add("ID: " + this.id);
+        props.add("Name: " + this.name);
+        props.add("Coordinate: " + this.coordinates.toString());
+        props.add("Creation date: " + this.creationDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+        props.add("Area: " + this.area);
+        props.add("Number of rooms: " + this.numberOfRooms);
+        props.add("Living space: " + this.livingSpace);
+        props.add("Central heating: " + this.centralHeating);
+        props.add("Transport: " + this.transport);
+        if (house != null) {
+            props.add("House's name: " + house.getName());
+            props.add("Construction year: " + house.getYear());
+            props.add("Number of lifts: " + house.getNumberOfLifts());
+        } else {
+            props.add("House: no information");
+        }
+        return props;
     }
 
-    public void printHouse() {
+    public List<String> getPropsHouse() {
+        List<String> props = new ArrayList<>();
         if (house != null) {
-            Printer.printCondition("*House's information*");
-            Printer.printResult("House's name: " + house.getName());
-            Printer.printResult("Construction year: " + house.getYear());
-            Printer.printResult("Number of lifts: " + house.getNumberOfLifts());
+            props.add("House's name: " + house.getName());
+            props.add("Construction year: " + house.getYear());
+            props.add("Number of lifts: " + house.getNumberOfLifts());
         } else {
-            Printer.printCondition("*House: no information*");
+            props.add("House: no information");
         }
+        return props;
     }
 
     public List<StringBuilder> getAllFields() {
