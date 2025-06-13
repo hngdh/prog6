@@ -1,13 +1,16 @@
 package server.iostream;
 
-import common.command_manager.CommandManager;
 import common.exceptions.LogException;
 import common.io.Printer;
 import common.objects.Flat;
 import common.packets.Request;
+import server.command_manager.CommandManager;
 import server.data.CollectionManager;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * The {@code Receiver} class contains the actual implementation of the commands. It interacts with
@@ -16,14 +19,12 @@ import java.util.*;
  * appropriate methods of the CollectionManager.
  */
 public class Receiver {
-    public static String programState;
     private final CollectionManager collectionManager;
     private final CommandManager commandManager;
 
     public Receiver(CollectionManager collectionManager, CommandManager commandManager) {
         this.commandManager = commandManager;
         this.collectionManager = collectionManager;
-        programState = "start";
     }
 
     private boolean notEmpty() {
@@ -32,23 +33,20 @@ public class Receiver {
     }
 
     public void exit() {
-        programState = "stop";
-    }
-
-    public void start() throws LogException {
-        if (Objects.equals(programState, "stop")) {
-            programState = "start";
-            collectionManager.reload();
-        } else Printer.printResult("Program already started");
+        collectionManager.save();
+        System.exit(0);
     }
 
     public List<String> help() {
         List<String> result = new ArrayList<>();
-        commandManager.getCommandCollection().forEach((name, command) -> {
-            if (!name.equals("start") && !name.equals("save")) {
-                result.add(command.getCommandInfo());
-            }
-        });
+        commandManager
+                .getCommandCollection()
+                .forEach(
+                        (name, command) -> {
+                            if (!name.equals("start") && !name.equals("save")) {
+                                result.add(command.getCommandInfo());
+                            }
+                        });
         return result;
     }
 
@@ -66,10 +64,13 @@ public class Receiver {
     public List<String> show() {
         List<String> result = new ArrayList<>();
         if (notEmpty()) {
-            collectionManager.getCollection().forEach(flat -> {
-                result.addAll(flat.getEverything());
-                result.add("");
-            });
+            collectionManager
+                    .getCollection()
+                    .forEach(
+                            flat -> {
+                                result.addAll(flat.getEverything());
+                                result.add("");
+                            });
         } else {
             result.add("This collection is empty");
         }
@@ -86,10 +87,6 @@ public class Receiver {
         return result;
     }
 
-    public void execute_script() {
-        Printer.printCondition("File being executed...");
-    }
-
     public List<String> min_by_coordinates() {
         List<String> result = new ArrayList<>();
         if (notEmpty()) {
@@ -104,7 +101,7 @@ public class Receiver {
         return result;
     }
 
-    public void save() throws LogException {
+    public void save() {
         collectionManager.save();
     }
 
@@ -121,7 +118,6 @@ public class Receiver {
                     result.addAll(flat.getEverything());
                     result.add("");
                 }
-                ;
             }
         } else {
             result.add("This collection is empty");

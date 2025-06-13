@@ -8,6 +8,7 @@ import common.exceptions.LogException;
 public class Client {
     public static void main(String[] args) throws LogException {
         Controller controller = new Controller();
+        Runtime.getRuntime().addShutdownHook(new Thread(controller::shutdown));
         controller.prepare();
         controller.run();
     }

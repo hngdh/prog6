@@ -9,8 +9,8 @@ import java.util.HashMap;
 
 /**
  * The {@code ModeManager} class manages different reading modes for commands, such as reading from
- * the console or reading from data_processors. It allows associating specific commands with specific {@link
- * ReaderMode} implementations.
+ * the console or reading from data_processors. It allows associating specific commands with
+ * specific {@link ReaderMode} implementations.
  */
 public class ModeManager {
     private final HashMap<String, ReaderMode> readModes = new HashMap<>();
@@ -26,7 +26,8 @@ public class ModeManager {
         readModes.put(command, readMode);
     }
 
-    public void call(Renderer renderer, ClientNetwork clientNetwork, String commandName, String arg) throws LogException, IOException {
+    public void call(Renderer renderer, ClientNetwork clientNetwork, String commandName, String arg)
+            throws LogException, IOException {
         readModes.get(commandName).execute(renderer, clientNetwork, commandName, arg);
     }
 }

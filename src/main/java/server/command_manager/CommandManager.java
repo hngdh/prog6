@@ -1,4 +1,4 @@
-package common.command_manager;
+package server.command_manager;
 
 import server.commands.*;
 
@@ -17,8 +17,8 @@ public class CommandManager {
     public void init() {
         registerCommand(new Add());
         registerCommand(new Clear());
-        registerCommand(new ExecuteScript());
         registerCommand(new Exit());
+        registerCommand(new ExecuteScript());
         registerCommand(new FilterContainsName());
         registerCommand(new Help());
         registerCommand(new Info());
@@ -31,7 +31,6 @@ public class CommandManager {
         registerCommand(new Show());
         registerCommand(new Sort());
         registerCommand(new Update());
-        registerCommand(new Start());
     }
 
     public void registerCommand(Command command) {

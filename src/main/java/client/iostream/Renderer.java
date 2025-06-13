@@ -7,7 +7,6 @@ import java.util.List;
 
 public class Renderer {
     public Renderer() {
-
     }
 
     public void printResponse(Response response) {
@@ -17,7 +16,7 @@ public class Renderer {
             List<String> notice = response.getNotice();
             if (notice != null) notice.forEach(Printer::printCondition);
         } else {
-            Printer.printError("System crashed!!!");
+            Printer.printError("System crashed");
         }
     }
 }

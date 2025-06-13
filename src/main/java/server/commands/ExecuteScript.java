@@ -11,7 +11,12 @@ public class ExecuteScript extends Command {
     private Receiver receiver;
 
     public ExecuteScript() {
-        super("execute_script", "file_name", "read and execute script from data_processors. Commands in the script formatted the same as in interactive mode", CommandTypes.INPUT_NEEDED, CommandFormats.WITH_STRING_ARG);
+        super(
+                "execute_script",
+                "file_name",
+                "read and execute script from data_processors. Commands in the script formatted the same as in interactive mode",
+                CommandTypes.INPUT_NEEDED,
+                CommandFormats.WITH_STRING_ARG);
     }
 
     public void setReceiver(Receiver receiver) {
@@ -20,7 +25,6 @@ public class ExecuteScript extends Command {
 
     @Override
     public List<String> execute(Request request) {
-        receiver.execute_script();
         return null;
     }
 }

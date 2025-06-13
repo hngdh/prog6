@@ -2,8 +2,9 @@ package common.exceptions;
 
 /**
  * The {@code WrongInputFormatException} class represents an exception that is thrown when the user
- * provides data_processors that does not match the expected format. It extends the {@code Exception} class
- * and provides a specific error message to inform the user about the incorrect data_processors format.
+ * provides input that does not match the expected format. It extends the {@code
+ * Exception} class and provides a specific error message to inform the user about the incorrect
+ * input format.
  */
 public class WrongInputFormatException extends Exception {
     public WrongInputFormatException() {
@@ -11,6 +12,6 @@ public class WrongInputFormatException extends Exception {
 
     @Override
     public String toString() {
-        return "Wrong file input format!";
+        return "Wrong input format!";
     }
 }

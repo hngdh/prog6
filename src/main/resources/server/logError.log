@@ -1,18 +1,11 @@
-13-06-25 01:38:02.949 [main] ERROR server_error - 
-java.net.BindException: Cannot assign requested address: bind
-	at java.base/sun.nio.ch.Net.bind0(Native Method)
-	at java.base/sun.nio.ch.Net.bind(Net.java:555)
-	at java.base/sun.nio.ch.DatagramChannelImpl.bindInternal(DatagramChannelImpl.java:1194)
-	at java.base/sun.nio.ch.DatagramChannelImpl.bind(DatagramChannelImpl.java:1164)
-	at java.base/sun.nio.ch.DatagramSocketAdaptor.bind(DatagramSocketAdaptor.java:107)
-	at server.network.ServerNetwork.init(ServerNetwork.java:33)
-	at Server.main(Server.java:16)
-13-06-25 01:41:33.489 [main] ERROR server_error - 
-java.net.BindException: Cannot assign requested address: bind
-	at java.base/sun.nio.ch.Net.bind0(Native Method)
-	at java.base/sun.nio.ch.Net.bind(Net.java:555)
-	at java.base/sun.nio.ch.DatagramChannelImpl.bindInternal(DatagramChannelImpl.java:1194)
-	at java.base/sun.nio.ch.DatagramChannelImpl.bind(DatagramChannelImpl.java:1164)
-	at java.base/sun.nio.ch.DatagramSocketAdaptor.bind(DatagramSocketAdaptor.java:107)
-	at server.network.ServerNetwork.init(ServerNetwork.java:33)
+13-06-25 15:43:14.621 [main] ERROR server_error - 
+java.io.FileNotFoundException: C:\Java\resources\server\data.csv (The system cannot find the path specified)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:216)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:157)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:111)
+	at common.data_processors.input.InputReader.setReader(InputReader.java:20)
+	at server.data.CollectionManager.loadData(CollectionManager.java:107)
+	at server.iostream.Handler.prepare(Handler.java:46)
+	at server.network.ServerNetwork.init(ServerNetwork.java:35)
 	at Server.main(Server.java:16)

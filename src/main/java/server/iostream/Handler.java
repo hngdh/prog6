@@ -1,24 +1,22 @@
 package server.iostream;
 
-import common.command_manager.CommandManager;
 import common.data_processors.input.InputReader;
-import common.data_processors.input.InputSplitter;
 import common.exceptions.LogException;
-import common.io.LogUtil;
 import common.io.Printer;
 import common.packets.Request;
 import common.packets.Response;
+import server.command_manager.CommandManager;
 import server.data.CollectionManager;
 
-import java.io.IOException;
 import java.net.SocketAddress;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The {@code Controller} class is the main entry point for processing user commands. It initializes
- * and manages various components, including data_processors reading, command classification, execution, and
- * collection management. It interacts with the user through the console, providing instructions and
- * feedback.
+ * and manages various components, including data_processors reading, command classification,
+ * execution, and collection management. It interacts with the user through the console, providing
+ * instructions and feedback.
  */
 public class Handler {
     private InputReader inputReader;
@@ -48,23 +46,23 @@ public class Handler {
     }
 
     public void processServer(Request request) throws LogException {
-        try {
-            String input = inputReader.readLine();
-            input = input.trim();
-            String command = InputSplitter.getCommand(input);
-            switch (command) {
-                case "save" -> invoker.call(null, new Request("save", null, null));
-                case "exit" -> invoker.call(null, new Request("exit", null, null));
-                default -> Printer.printError("Command not supported {save, exit}");
-            }
-        } catch (IOException e) {
-            LogUtil.logServerError(e);
+        String command = request.getCommand();
+        switch (command) {
+            case "save" -> invoker.call(null, new Request("save", null, null));
+            case "exit" -> invoker.call(null, new Request("exit", null, null));
+            default -> Printer.printError("Command not supported {save, exit}");
         }
     }
 
-    public Response processClient(SocketAddress port, Request request) throws LogException {
-        var result = invoker.call(port, request);
-        Printer.printResult(result);
-        return new Response(new ArrayList<>(), result);
+    public Response processClient(SocketAddress port, Request request) {
+        if (!request.getCommand().equals("save")) {
+            List<String> result = invoker.call(port, request);
+            Printer.printResult(result);
+            return new Response(new ArrayList<>(), result);
+        } else {
+            List<String> result = new ArrayList<>();
+            result.add("Command not supported");
+            return new Response(new ArrayList<>(), result);
+        }
     }
 }

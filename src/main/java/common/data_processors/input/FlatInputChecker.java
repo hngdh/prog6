@@ -3,9 +3,9 @@ package common.data_processors.input;
 import common.enums.Transport;
 
 /**
- * The {@code HouseInputChecker} class provides static methods for validating data_processors strings related
- * to {@link common.objects.Flat} properties. It extends the {@link InputChecker} class and provides
- * specific checks for name, coordination, area, ...
+ * The {@code HouseInputChecker} class provides static methods for validating data_processors
+ * strings related to {@link common.objects.Flat} properties. It extends the {@link InputChecker}
+ * class and provides specific checks for name, coordination, area, ...
  */
 public class FlatInputChecker extends InputChecker {
     public FlatInputChecker() {

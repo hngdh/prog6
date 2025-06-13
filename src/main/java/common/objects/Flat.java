@@ -117,7 +117,8 @@ public class Flat implements Serializable {
         props.add("ID: " + this.id);
         props.add("Name: " + this.name);
         props.add("Coordinate: " + this.coordinates.toString());
-        props.add("Creation date: " + this.creationDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+        props.add(
+                "Creation date: " + this.creationDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
         props.add("Area: " + this.area);
         props.add("Number of rooms: " + this.numberOfRooms);
         props.add("Living space: " + this.livingSpace);

@@ -13,9 +13,9 @@ import java.util.List;
 
 /**
  * The {@code ObjBuilder} class provides static methods for parsing data from a list of strings and
- * constructing {@link Flat} and related objects ({@link House}, {@link
- * Coordinates}). It handles parsing and validation of data, including handling "null"
- * values from files and throwing appropriate exceptions if parsing fails or data is invalid.
+ * constructing {@link Flat} and related objects ({@link House}, {@link Coordinates}). It handles
+ * parsing and validation of data, including handling "null" values from files and throwing
+ * appropriate exceptions if parsing fails or data is invalid.
  */
 public class ObjBuilder {
     public static Flat buildFlat(List<String> flatInfo, List<String> houseInfo) throws LogException {
@@ -51,7 +51,6 @@ public class ObjBuilder {
             flat.setHouse(buildHouse(houseInfo));
         } catch (IllegalArgumentException e) {
             LogUtil.logClientError(e);
-
         }
         return flat;
     }
@@ -68,7 +67,6 @@ public class ObjBuilder {
             }
         } catch (Exception e) {
             LogUtil.logClientError(e);
-
         }
         return house;
     }

@@ -11,7 +11,8 @@ public class Clear extends Command {
     private Receiver receiver;
 
     public Clear() {
-        super("clear", "", "clear collection", CommandTypes.NO_INPUT_NEEDED, CommandFormats.WITHOUT_ARG);
+        super(
+                "clear", "", "clear collection", CommandTypes.NO_INPUT_NEEDED, CommandFormats.WITHOUT_ARG);
     }
 
     public void setReceiver(Receiver receiver) {

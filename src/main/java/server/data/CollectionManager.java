@@ -18,7 +18,8 @@ import java.util.LinkedList;
 /**
  * The {@code CollectionManager} class manages a collection of {@link Flat} objects stored in a
  * {@link LinkedList}. It provides methods for adding, removing, updating, and retrieving elements
- * from the collection. It also handles saving and loading the collection to/from a CSV data_processors.
+ * from the collection. It also handles saving and loading the collection to/from a CSV
+ * data_processors.
  */
 public class CollectionManager {
     private final LinkedList<Flat> collection = new LinkedList<>();
@@ -46,17 +47,21 @@ public class CollectionManager {
     }
 
     public void min_by_coordinates() {
-        collection.sort(Comparator.comparing(a -> Float.parseFloat(a.getCoordinates().getX()) + Float.parseFloat(a.getCoordinates().getY())));
+        collection.sort(
+                Comparator.comparing(
+                        a ->
+                                Float.parseFloat(a.getCoordinates().getX())
+                                        + Float.parseFloat(a.getCoordinates().getY())));
     }
 
-    public void save() throws LogException {
+    public void save() {
         try {
             CSVWriter writer = new CSVWriter(fileName);
             for (Flat flat : collection) {
                 writer.writeLines(flat.getAllFields());
             }
         } catch (IOException e) {
-            LogUtil.logServerError(e);
+            Printer.printError("Program even couldn't be saved properly :)");
         }
     }
 
@@ -85,7 +90,10 @@ public class CollectionManager {
 
     public void update(Request request) {
         String key = request.getArgument();
-        if (key == null || key.isEmpty() || !key.matches("-?[0-9]+") || Integer.parseInt(key) > collection.size()) {
+        if (key == null
+                || key.isEmpty()
+                || !key.matches("-?[0-9]+")
+                || Integer.parseInt(key) > collection.size()) {
             try {
                 throw new WrongKeyException();
             } catch (WrongKeyException e) {

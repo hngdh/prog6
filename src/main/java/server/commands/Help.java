@@ -11,7 +11,12 @@ public class Help extends Command {
     private Receiver receiver;
 
     public Help() {
-        super("help", "", "display this dialog", CommandTypes.NO_INPUT_NEEDED, CommandFormats.WITHOUT_ARG);
+        super(
+                "help",
+                "",
+                "display this dialog",
+                CommandTypes.NO_INPUT_NEEDED,
+                CommandFormats.WITHOUT_ARG);
     }
 
     public void setReceiver(Receiver receiver) {

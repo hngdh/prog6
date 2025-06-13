@@ -11,7 +11,12 @@ public class MinByCoordinates extends Command {
     private Receiver receiver;
 
     public MinByCoordinates() {
-        super("min_by_coordinates", "", "display object from collection with minimum coordinate", CommandTypes.NO_INPUT_NEEDED, CommandFormats.WITHOUT_ARG);
+        super(
+                "min_by_coordinates",
+                "",
+                "display object from collection with minimum coordinate",
+                CommandTypes.NO_INPUT_NEEDED,
+                CommandFormats.WITHOUT_ARG);
     }
 
     public void setReceiver(Receiver receiver) {

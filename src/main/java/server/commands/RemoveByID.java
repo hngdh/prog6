@@ -11,7 +11,12 @@ public class RemoveByID extends Command {
     private Receiver receiver;
 
     public RemoveByID() {
-        super("remove_by_id", "id", "remove element from collection by its id", CommandTypes.NO_INPUT_NEEDED, CommandFormats.WITH_NUMERAL_ARG);
+        super(
+                "remove_by_id",
+                "id",
+                "remove element from collection by its id",
+                CommandTypes.NO_INPUT_NEEDED,
+                CommandFormats.WITH_NUMERAL_ARG);
     }
 
     public void setReceiver(Receiver receiver) {

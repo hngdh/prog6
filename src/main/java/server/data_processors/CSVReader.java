@@ -9,9 +9,9 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * The {@code CSVReader} class is responsible for reading data from a CSV data_processors and creating {@link
- * Flat} objects. It utilizes the {@link FileProcessor} to validate and process the data extracted
- * from the CSV data_processors.
+ * The {@code CSVReader} class is responsible for reading data from a CSV data_processors and
+ * creating {@link Flat} objects. It utilizes the {@link FileProcessor} to validate and process the
+ * data extracted from the CSV data_processors.
  */
 public class CSVReader {
     private final FileProcessor processor;

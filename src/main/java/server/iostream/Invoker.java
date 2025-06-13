@@ -1,9 +1,9 @@
 package server.iostream;
 
-import common.command_manager.CommandManager;
 import common.exceptions.LogException;
 import common.io.Printer;
 import common.packets.Request;
+import server.command_manager.CommandManager;
 import server.commands.Command;
 
 import java.net.SocketAddress;
@@ -23,10 +23,11 @@ public class Invoker {
         this.receiver = receiver;
     }
 
-    public List<String> call(SocketAddress port, Request request) throws LogException {
+    public List<String> call(SocketAddress port, Request request) {
         Printer.printCondition("> Executing " + request.getCommand());
         Command cmd = commandManager.getCommand(request.getCommand());
         cmd.setReceiver(receiver);
+        Printer.printCondition("Executed");
         return cmd.execute(request);
     }
 }

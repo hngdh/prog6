@@ -22,12 +22,21 @@ public class LogUtil {
         throw new LogException();
     }
 
+    public static void logServerErrorWONotif(Exception e) throws LogException {
+        serverError.error("", e);
+    }
+
     public static void logServerInfo(String string) {
         serverInfo.info(string);
         consoleInfo.info(string);
     }
 
     public static void logClientError(Exception e) throws LogException {
+        clientError.error("", e);
+        throw new LogException();
+    }
+
+    public static void logClientErrorWONotif(Exception e) throws LogException {
         clientError.error("", e);
         throw new LogException();
     }

@@ -6,9 +6,9 @@ import java.io.InputStreamReader;
 import java.util.LinkedList;
 
 /**
- * The {@code InputReader} class provides a convenient way to read data_processors from either a data_processors or the
- * standard data_processors (console). It uses an {@link InputStreamReader} to read characters from the data_processors
- * stream and provides a method to read a line of text.
+ * The {@code InputReader} class provides a convenient way to read data_processors from either a
+ * data_processors or the standard data_processors (console). It uses an {@link InputStreamReader}
+ * to read characters from the data_processors stream and provides a method to read a line of text.
  */
 public class InputReader {
     private InputStreamReader reader;

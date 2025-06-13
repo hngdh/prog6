@@ -2,6 +2,7 @@ package server.commands;
 
 import common.enums.CommandFormats;
 import common.enums.CommandTypes;
+import common.exceptions.LogException;
 import common.packets.Request;
 import server.iostream.Receiver;
 
@@ -11,7 +12,7 @@ public class Exit extends Command {
     private Receiver receiver;
 
     public Exit() {
-        super("exit", "", "exit the program (without saving)", CommandTypes.NO_INPUT_NEEDED, CommandFormats.WITHOUT_ARG);
+        super("exit", "", "exit the program", CommandTypes.NO_INPUT_NEEDED, CommandFormats.WITHOUT_ARG);
     }
 
     public void setReceiver(Receiver receiver) {
@@ -19,7 +20,7 @@ public class Exit extends Command {
     }
 
     @Override
-    public List<String> execute(Request request) {
+    public List<String> execute(Request request){
         receiver.exit();
         return null;
     }

@@ -23,8 +23,10 @@ public class ServerNetwork {
     private final int MAX_PACKET_SIZE = 65536;
     private Handler handler;
     private Selector selector;
+    private boolean isAwaken;
 
     public ServerNetwork() {
+        isAwaken = true;
     }
 
     public void init(String fileName) throws NetworkException, LogException {
@@ -46,7 +48,7 @@ public class ServerNetwork {
 
     public void handle() throws LogException, IOException {
         LogUtil.logServerInfo("Listening on port " + PORT);
-        while (true) {
+        while (isAwaken) {
             if (selector.select(10) == 0) {
                 BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
                 if (br.ready()) {
@@ -76,23 +78,22 @@ public class ServerNetwork {
         }
     }
 
-    public void emergencyShutdown() throws LogException {
-        LogUtil.logServerInfo("A emergency shutdown process has been called!");
-        LogUtil.logServerInfo("Shutting down, a backup process is being executed...");
-        handler.processClient(null, new Request("save", null, null));
+    public void shutdown() {
+        LogUtil.logServerInfo("Manual exit detected, saving files...");
+        handler.processClient(null, new Request("exit", null, null));
+        isAwaken = false;
     }
 
-    public Request readRequest(DatagramChannel ss, int MAX_PACKET_SIZE) throws LogException {
+    public Request readRequest(DatagramChannel dc, int MAX_PACKET_SIZE) throws LogException {
         try {
             ByteBuffer buffer = ByteBuffer.allocate(MAX_PACKET_SIZE);
-            SocketAddress remoteAddress = ss.receive(buffer);
-            LogUtil.logServerInfo("Received connection from: " + remoteAddress);
+            SocketAddress remoteAddress = dc.receive(buffer);
             buffer.flip();
             ByteArrayInputStream bais = new ByteArrayInputStream(buffer.array(), 0, buffer.limit());
             ObjectInputStream ois = new ObjectInputStream(bais);
             Request request = (Request) ois.readObject();
+            LogUtil.logServerInfo("Received '" + request.getCommand() + "' from: " + remoteAddress);
             buffer.clear();
-
             request.setAddress(remoteAddress);
             return request;
         } catch (IOException | ClassNotFoundException e) {
@@ -102,7 +103,8 @@ public class ServerNetwork {
         }
     }
 
-    public void sendResponse(Response response, SocketAddress port, DatagramChannel channel) throws LogException {
+    public void sendResponse(Response response, SocketAddress port, DatagramChannel channel)
+            throws LogException {
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ObjectOutputStream oos = new ObjectOutputStream(baos);

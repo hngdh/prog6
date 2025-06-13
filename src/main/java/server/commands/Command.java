@@ -15,7 +15,12 @@ public abstract class Command {
     private final CommandTypes classifier;
     private final CommandFormats format;
 
-    public Command(String name, String argument, String description, CommandTypes classifier, CommandFormats format) {
+    public Command(
+            String name,
+            String argument,
+            String description,
+            CommandTypes classifier,
+            CommandFormats format) {
         this.name = name;
         this.argument = argument;
         this.description = description;
@@ -25,7 +30,7 @@ public abstract class Command {
 
     public abstract void setReceiver(Receiver receiver);
 
-    public abstract List<String> execute(Request request) throws LogException;
+    public abstract List<String> execute(Request request);
 
     public String getName() {
         return name;

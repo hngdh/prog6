@@ -17,7 +17,6 @@ import java.net.SocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 
-
 public class ClientNetwork {
     private static final Logger log = LoggerFactory.getLogger(ClientNetwork.class);
     private final int PORT = 4004;
@@ -58,7 +57,8 @@ public class ClientNetwork {
         return response;
     }
 
-    public void sendPacket(DatagramChannel channel, SocketAddress serverAddress, Request request) throws LogException {
+    public void sendPacket(DatagramChannel channel, SocketAddress serverAddress, Request request)
+            throws LogException {
         Printer.printCondition("> Executing " + request.getCommand());
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -67,13 +67,15 @@ public class ClientNetwork {
             oos.flush();
             ByteBuffer buffer = ByteBuffer.wrap(baos.toByteArray());
             channel.send(buffer, serverAddress);
-            LogUtil.logClientInfo("Sending " + request.getCommand() + " from " + channel.getLocalAddress());
+            LogUtil.logClientInfo(
+                    "Sending '" + request.getCommand() + "' from " + channel.getLocalAddress());
         } catch (IOException e) {
             LogUtil.logClientError(e);
         }
     }
 
-    public Response getResponse(DatagramChannel channel, int MAX_PACKET_SIZE) throws NetworkException, LogException {
+    public Response getResponse(DatagramChannel channel, int MAX_PACKET_SIZE)
+            throws NetworkException, LogException {
         Response response = new Response();
         try {
             ByteBuffer buffer = ByteBuffer.allocate(MAX_PACKET_SIZE);

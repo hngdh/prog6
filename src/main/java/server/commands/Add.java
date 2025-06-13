@@ -11,7 +11,12 @@ public class Add extends Command {
     private Receiver receiver;
 
     public Add() {
-        super("add", "{element}", "add element to collection", CommandTypes.INPUT_NEEDED, CommandFormats.WITHOUT_ARG);
+        super(
+                "add",
+                "{element}",
+                "add element to collection",
+                CommandTypes.INPUT_NEEDED,
+                CommandFormats.WITHOUT_ARG);
     }
 
     public void setReceiver(Receiver receiver) {

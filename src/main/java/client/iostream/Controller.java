@@ -1,9 +1,9 @@
 package client.iostream;
 
+import client.command_utils.CommandClassifier;
+import client.command_utils.FormatChecker;
 import client.network.ClientNetwork;
 import client.read_mode.ModeManager;
-import common.command_manager.CommandManager;
-import common.data_processors.FormatChecker;
 import common.data_processors.input.InputChecker;
 import common.data_processors.input.InputReader;
 import common.data_processors.input.InputSplitter;
@@ -21,8 +21,9 @@ public class Controller {
     private InputReader inputReader;
     private ModeManager modeManager;
     private FormatChecker formatChecker;
-    private CommandManager commandManager;
+    private CommandClassifier commandClassifier;
     private ClientNetwork clientNetwork;
+    private boolean isAwake;
 
     public Controller() {
         Printer.printInfo("Client started");
@@ -34,23 +35,20 @@ public class Controller {
         inputReader = new InputReader();
         inputReader.setReader();
         formatChecker = new FormatChecker();
-
+        formatChecker.init();
         modeManager = new ModeManager();
         modeManager.init();
-        commandManager = new CommandManager();
-        commandManager.init();
-
+        commandClassifier = new CommandClassifier();
+        commandClassifier.init();
+        isAwake = true;
     }
 
     public void run() throws LogException {
-        while (true) {
+        while (isAwake) {
             try {
                 String input = inputReader.readLine();
-                input = input.trim();
                 preprocess(input);
-                process(input);
-                Printer.printInfo("Executed");
-            } catch (LogException | WrongInputFormatException e) {
+            } catch (WrongInputFormatException e) {
                 Printer.printError(e.toString());
                 Printer.printCondition("Command couldn't be executed!");
             } catch (IOException e) {
@@ -59,17 +57,23 @@ public class Controller {
         }
     }
 
-    public void preprocess(String input) throws WrongInputFormatException {
+    public void preprocess(String input) throws IOException, LogException, WrongInputFormatException {
         if (!InputChecker.checkInput(input)) {
             throw new WrongInputFormatException();
         }
         formatChecker.checkFormat(InputSplitter.getCommand(input), InputSplitter.getArg(input));
-    }
-
-    public void process(String input) throws LogException, IOException {
         String command = InputSplitter.getCommand(input);
         String argument = InputSplitter.getArg(input);
-        CommandTypes type = commandManager.getCommand(command).getCommandClassifier();
+        CommandTypes type = commandClassifier.getCommandClassifier(command);
+        if (!command.equals("exit")) {
+            process(command, argument, type);
+        } else {
+            exit();
+        }
+    }
+
+    public void process(String command, String argument, CommandTypes type)
+            throws LogException, IOException {
         Renderer renderer = new Renderer();
         switch (type) {
             case INPUT_NEEDED -> modeManager.call(renderer, clientNetwork, command, argument);
@@ -78,5 +82,15 @@ public class Controller {
                 renderer.printResponse(response);
             }
         }
+    }
+
+    private void exit() {
+        Printer.printInfo("Exiting...");
+        System.exit(0);
+    }
+
+    public void shutdown(){
+        isAwake = false;
+        exit();
     }
 }

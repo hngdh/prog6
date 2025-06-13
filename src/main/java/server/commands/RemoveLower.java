@@ -11,7 +11,12 @@ public class RemoveLower extends Command {
     private Receiver receiver;
 
     public RemoveLower() {
-        super("remove_lower", "{element}", "remove elements lower than given element", CommandTypes.INPUT_NEEDED, CommandFormats.WITHOUT_ARG);
+        super(
+                "remove_lower",
+                "{element}",
+                "remove elements lower than given element",
+                CommandTypes.INPUT_NEEDED,
+                CommandFormats.WITHOUT_ARG);
     }
 
     public void setReceiver(Receiver receiver) {

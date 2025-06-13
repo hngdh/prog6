@@ -1,8 +1,8 @@
 package client.read_mode;
 
+import client.command_utils.CommandClassifier;
 import client.iostream.Renderer;
 import client.network.ClientNetwork;
-import common.command_manager.CommandManager;
 import common.data_processors.ObjBuilder;
 import common.data_processors.input.InputChecker;
 import common.data_processors.input.InputReader;
@@ -27,12 +27,12 @@ import java.util.List;
  * functionality to read commands and data from a data_processors and execute them.
  */
 public class FileReaderMode implements ReaderMode {
-    private final CommandManager commandManager;
+    private final CommandClassifier commandClassifier;
     private final String fileDir = "src\\main\\resources\\client\\";
 
     public FileReaderMode() {
-        commandManager = new CommandManager();
-        commandManager.init();
+        commandClassifier = new CommandClassifier();
+        commandClassifier.init();
     }
 
     public Flat build(LinkedList<String> commandList) throws LogException, IOException {
@@ -92,13 +92,15 @@ public class FileReaderMode implements ReaderMode {
         if (!InputChecker.checkInput(input)) {
             throw new WrongFileInputException();
         }
-        if (!commandManager.isCommand(InputSplitter.getCommand(input.toLowerCase())))
+        if (!commandClassifier.isCommand(InputSplitter.getCommand(input)))
             throw new WrongCommandException();
         return input;
     }
 
     @Override
-    public void execute(Renderer renderer, ClientNetwork clientNetwork, String commandName, String currentFile) throws LogException {
+    public void execute(
+            Renderer renderer, ClientNetwork clientNetwork, String commandName, String currentFile)
+            throws LogException {
         LinkedList<String> commandList = seekForward(currentFile);
         try {
             while (!commandList.isEmpty()) {
@@ -107,7 +109,7 @@ public class FileReaderMode implements ReaderMode {
                     String command = InputSplitter.getCommand(input);
                     Printer.printInfo(command);
                     String argument = InputSplitter.getArg(input);
-                    CommandTypes type = commandManager.getCommand(command).getCommandClassifier();
+                    CommandTypes type = commandClassifier.getCommandClassifier(command);
                     switch (type) {
                         case NO_INPUT_NEEDED -> {
                             Response responce = clientNetwork.respond(new Request(command, argument, null));
@@ -151,7 +153,12 @@ public class FileReaderMode implements ReaderMode {
         return commandList;
     }
 
-    private LinkedList<String> seekForward(LinkedList<String> commandList, String currentFile, int loopCount, LinkedList<String> fileLoop) throws LogException {
+    private LinkedList<String> seekForward(
+            LinkedList<String> commandList,
+            String currentFile,
+            int loopCount,
+            LinkedList<String> fileLoop)
+            throws LogException {
         loopCount += 1;
         if (!fileLoop.contains(currentFile)) {
             fileLoop.add(currentFile);
@@ -175,7 +182,8 @@ public class FileReaderMode implements ReaderMode {
         } else if (loopCount == 10) {
             Printer.printCondition(loopCount + " times jumping is enough I think");
         } else if (loopCount > 5) {
-            Printer.printCondition("You really want to jump more than " + (loopCount - 1) + " times? That's wild");
+            Printer.printCondition(
+                    "You really want to jump more than " + (loopCount - 1) + " times? That's wild");
         } else {
             Printer.printCondition("File loop detected, executing commands in all files once");
             return commandList;
