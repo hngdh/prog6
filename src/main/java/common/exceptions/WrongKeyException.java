@@ -6,11 +6,10 @@ package common.exceptions;
  * error message to inform the user about the incorrect key.
  */
 public class WrongKeyException extends RuntimeException {
-    public WrongKeyException() {
-    }
+  public WrongKeyException() {}
 
-    @Override
-    public String toString() {
-        return "Wrong key or key not listed!";
-    }
+  @Override
+  public String toString() {
+    return "Wrong key or key not listed!";
+  }
 }

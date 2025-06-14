@@ -6,11 +6,10 @@ package common.exceptions;
  * message to inform the user about the problem.
  */
 public class WrongDataException extends Exception {
-    public WrongDataException() {
-    }
+  public WrongDataException() {}
 
-    @Override
-    public String toString() {
-        return "There were problems loading data.";
-    }
+  @Override
+  public String toString() {
+    return "There were problems loading data";
+  }
 }

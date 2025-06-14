@@ -3,29 +3,28 @@ package server.commands;
 import common.enums.CommandFormats;
 import common.enums.CommandTypes;
 import common.packets.Request;
+import java.util.List;
 import server.iostream.Receiver;
 
-import java.util.List;
-
 public class PrintFieldAscendingHouse extends Command {
-    private Receiver receiver;
+  private Receiver receiver;
 
-    public PrintFieldAscendingHouse() {
-        super(
-                "print_field_ascending_house",
-                "",
-                "display in ascending order all elements in house's field",
-                CommandTypes.NO_INPUT_NEEDED,
-                CommandFormats.WITHOUT_ARG);
-    }
+  public PrintFieldAscendingHouse() {
+    super(
+        "print_field_ascending_house",
+        "",
+        "display in ascending order all elements in house's field",
+        CommandTypes.NO_INPUT_NEEDED,
+        CommandFormats.WITHOUT_ARG);
+  }
 
-    public void setReceiver(Receiver receiver) {
-        this.receiver = receiver;
-    }
+  public void setReceiver(Receiver receiver) {
+    this.receiver = receiver;
+  }
 
-    @Override
-    public List<String> execute(Request request) {
+  @Override
+  public List<String> execute(Request request) {
 
-        return receiver.print_field_ascending_house();
-    }
+    return receiver.print_field_ascending_house();
+  }
 }

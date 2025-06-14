@@ -6,6 +6,6 @@ package common.enums;
  * {@link client.read_mode.ReaderMode}.
  */
 public enum CommandTypes {
-    INPUT_NEEDED,
-    NO_INPUT_NEEDED
+  INPUT_NEEDED,
+  NO_INPUT_NEEDED
 }

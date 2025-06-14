@@ -1,27 +1,9 @@
-13-06-25 15:37:36.862 [main] INFO  server_info - Server started
-13-06-25 15:37:37.015 [main] INFO  server_info - Listening on port 4004
-13-06-25 15:43:14.606 [main] INFO  server_info - Server started
-13-06-25 15:43:14.754 [main] INFO  server_info - Listening on port 4004
-13-06-25 16:02:27.753 [main] INFO  server_info - Server started
-13-06-25 16:02:27.929 [main] INFO  server_info - Listening on port 4004
-13-06-25 16:10:23.147 [main] INFO  server_info - Server started
-13-06-25 16:10:23.320 [main] INFO  server_info - Listening on port 4004
-13-06-25 16:10:28.019 [main] INFO  server_info - Received 'help' from: /127.0.0.1:57742
-13-06-25 16:10:28.026 [main] INFO  server_info - Response sent to /127.0.0.1:57742
-13-06-25 17:04:05.615 [main] INFO  server_info - Server started
-13-06-25 17:04:05.771 [main] INFO  server_info - Listening on port 4004
-13-06-25 17:23:49.466 [main] INFO  server_info - Received 'help' from: /127.0.0.1:65040
-13-06-25 17:23:49.474 [main] INFO  server_info - Response sent to /127.0.0.1:65040
-13-06-25 17:23:56.917 [main] INFO  server_info - Received 'help' from: /127.0.0.1:59625
-13-06-25 17:23:56.918 [main] INFO  server_info - Response sent to /127.0.0.1:59625
-13-06-25 17:23:57.837 [main] INFO  server_info - Received 'info' from: /127.0.0.1:59626
-13-06-25 17:23:57.838 [main] INFO  server_info - Response sent to /127.0.0.1:59626
-13-06-25 17:44:58.761 [main] INFO  server_info - Server started
-13-06-25 17:44:58.922 [main] INFO  server_info - Listening on port 4004
-13-06-25 17:45:01.227 [Thread-0] INFO  server_info - Manual exit detected, saving files...
-13-06-25 17:45:18.043 [main] INFO  server_info - Server started
-13-06-25 17:45:18.207 [main] INFO  server_info - Listening on port 4004
-13-06-25 17:45:19.352 [Thread-0] INFO  server_info - Manual exit detected, saving files...
-13-06-25 17:45:59.985 [main] INFO  server_info - Server started
-13-06-25 17:46:00.163 [main] INFO  server_info - Listening on port 4004
-13-06-25 17:46:02.925 [Thread-0] INFO  server_info - Manual exit detected, saving files...
+14-06-25 02:34:34.671 [main] INFO  server_info - Server started
+14-06-25 02:34:34.855 [main] INFO  server_info - Listening on port 404
+14-06-25 02:37:48.918 [Thread-0] INFO  server_info - Exit detected, saving files...
+14-06-25 02:48:20.227 [main] INFO  server_info - Server started
+14-06-25 02:48:20.460 [main] INFO  server_info - Listening on port 4004
+14-06-25 02:50:20.840 [Thread-0] INFO  server_info - Exit detected, saving files...
+14-06-25 02:53:40.175 [main] INFO  server_info - Server started
+14-06-25 02:53:40.301 [main] INFO  server_info - Listening on port 4004
+14-06-25 02:59:16.182 [Thread-0] INFO  server_info - Exit detected, saving files...

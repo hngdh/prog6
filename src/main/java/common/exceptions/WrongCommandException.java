@@ -6,11 +6,10 @@ package common.exceptions;
  * message to inform the user about the incorrect command.
  */
 public class WrongCommandException extends RuntimeException {
-    public WrongCommandException() {
-    }
+  public WrongCommandException() {}
 
-    @Override
-    public String toString() {
-        return "Wrong command!";
-    }
+  @Override
+  public String toString() {
+    return "Wrong command!";
+  }
 }

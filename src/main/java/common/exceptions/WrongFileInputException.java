@@ -7,11 +7,10 @@ package common.exceptions;
  * a data_processors.
  */
 public class WrongFileInputException extends RuntimeException {
-    public WrongFileInputException() {
-    }
+  public WrongFileInputException() {}
 
-    @Override
-    public String toString() {
-        return "Wrong file input!";
-    }
+  @Override
+  public String toString() {
+    return "Wrong file input!";
+  }
 }

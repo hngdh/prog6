@@ -6,11 +6,10 @@ package common.exceptions;
  * logged in log data_processors.
  */
 public class LogException extends Exception {
-    public LogException() {
-    }
+  public LogException() {}
 
-    @Override
-    public String toString() {
-        return "Error during processing, please check log.";
-    }
+  @Override
+  public String toString() {
+    return "Error during processing, please check log";
+  }
 }

@@ -1,4 +1,7 @@
-remove_first
-sort
-info
-execute_script script2.txt
+df
+df
+s
+d
+df
+
+execute_script client/script2.txt

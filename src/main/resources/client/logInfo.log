@@ -1,9 +1,0 @@
-13-06-25 16:10:28.009 [main] INFO  client_info - Sending 'help' from /127.0.0.1:57742
-13-06-25 16:10:28.034 [main] INFO  client_info - Responded from /127.0.0.1:57742
-13-06-25 17:23:49.455 [main] INFO  client_info - Sending 'help' from /127.0.0.1:65040
-13-06-25 17:23:49.483 [main] INFO  client_info - Responded from /127.0.0.1:65040
-13-06-25 17:23:56.917 [main] INFO  client_info - Sending 'help' from /127.0.0.1:59625
-13-06-25 17:23:56.919 [main] INFO  client_info - Responded from /127.0.0.1:59625
-13-06-25 17:23:57.837 [main] INFO  client_info - Sending 'info' from /127.0.0.1:59626
-13-06-25 17:23:57.839 [main] INFO  client_info - Responded from /127.0.0.1:59626
-13-06-25 17:45:34.780 [main] INFO  client_info - Sending 'help' from /127.0.0.1:62625

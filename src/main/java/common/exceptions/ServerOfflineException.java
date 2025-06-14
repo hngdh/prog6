@@ -1,11 +1,10 @@
 package common.exceptions;
 
 public class ServerOfflineException extends RuntimeException {
-    public ServerOfflineException() {
-    }
+  public ServerOfflineException() {}
 
-    @Override
-    public String toString() {
-        return "Server is offline";
-    }
+  @Override
+  public String toString() {
+    return "Server is offline";
+  }
 }

@@ -6,15 +6,15 @@ import common.packets.Request;
 import java.util.List;
 import server.iostream.Receiver;
 
-public class RemoveLower extends Command {
+public class Reload extends Command {
   private Receiver receiver;
 
-  public RemoveLower() {
+  public Reload() {
     super(
-        "remove_lower",
-        "{element}",
-        "remove elements lower than given element",
-        CommandTypes.INPUT_NEEDED,
+        "reload",
+        "",
+        "reload collection from file",
+        CommandTypes.NO_INPUT_NEEDED,
         CommandFormats.WITHOUT_ARG);
   }
 
@@ -24,7 +24,7 @@ public class RemoveLower extends Command {
 
   @Override
   public List<String> execute(Request request) {
-
-    return receiver.remove_lower(request);
+    receiver.reload();
+    return null;
   }
 }

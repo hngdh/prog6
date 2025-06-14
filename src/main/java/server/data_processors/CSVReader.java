@@ -4,7 +4,6 @@ import common.data_processors.ObjBuilder;
 import common.exceptions.LogException;
 import common.exceptions.WrongDataException;
 import common.objects.Flat;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -14,16 +13,16 @@ import java.util.List;
  * data extracted from the CSV data_processors.
  */
 public class CSVReader {
-    private final FileProcessor processor;
+  private final FileProcessor processor;
 
-    public CSVReader() throws IOException {
-        processor = new FileProcessor();
-    }
+  public CSVReader() throws IOException {
+    processor = new FileProcessor();
+  }
 
-    public Flat loadObj(String str) throws WrongDataException, LogException {
-        List<String> flatInfo = processor.checkFlatInfo(str);
-        List<String> houseInfo = processor.checkHouseInfo(str);
+  public Flat loadObj(String str) throws WrongDataException, LogException {
+    List<String> flatInfo = processor.checkFlatInfo(str);
+    List<String> houseInfo = processor.checkHouseInfo(str);
 
-        return ObjBuilder.buildFlat(flatInfo, houseInfo);
-    }
+    return ObjBuilder.buildFlat(flatInfo, houseInfo);
+  }
 }

@@ -6,27 +6,27 @@
     </appender>
 
     <appender name="server_error" class="ch.qos.logback.core.FileAppender">
-        <file>src\main\resources\server\logError.log</file>
+        <file>server/logError.log</file>
         <encoder>
             <pattern>%d{dd-MM-yy HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
     <appender name="server_info" class="ch.qos.logback.core.FileAppender">
-        <file>src\main\resources\server\logInfo.log</file>
+        <file>server/logInfo.log</file>
         <encoder>
             <pattern>%d{dd-MM-yy HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
     <appender name="client_error" class="ch.qos.logback.core.FileAppender">
-        <file>src\main\resources\client\logError.log</file>
+        <file>client/logError.log</file>
         <encoder>
             <pattern>%d{dd-MM-yy HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
     <appender name="client_info" class="ch.qos.logback.core.FileAppender">
-        <file>src\main\resources\client\logInfo.log</file>
+        <file>client/logInfo.log</file>
         <encoder>
             <pattern>%d{dd-MM-yy HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>

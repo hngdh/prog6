@@ -1,7 +1,6 @@
 package common.packets;
 
 import common.objects.Flat;
-
 import java.io.Serializable;
 import java.net.SocketAddress;
 
@@ -10,34 +9,34 @@ import java.net.SocketAddress;
  * It is used to encapsulate the data needed for various operations on the collection of flats.
  */
 public class Request implements Serializable {
-    private final String command;
-    private final String argument;
-    private final Flat flat;
-    private SocketAddress address;
+  private final String command;
+  private final String argument;
+  private final Flat flat;
+  private SocketAddress address;
 
-    public Request(String command, String argument, Flat flat) {
-        this.command = command;
-        this.argument = argument;
-        this.flat = flat;
-    }
+  public Request(String command, String argument, Flat flat) {
+    this.command = command;
+    this.argument = argument;
+    this.flat = flat;
+  }
 
-    public String getCommand() {
-        return command;
-    }
+  public String getCommand() {
+    return command;
+  }
 
-    public SocketAddress getAddress() {
-        return address;
-    }
+  public SocketAddress getAddress() {
+    return address;
+  }
 
-    public void setAddress(SocketAddress address) {
-        this.address = address;
-    }
+  public void setAddress(SocketAddress address) {
+    this.address = address;
+  }
 
-    public String getArgument() {
-        return argument;
-    }
+  public String getArgument() {
+    return argument;
+  }
 
-    public Flat getFlat() {
-        return flat;
-    }
+  public Flat getFlat() {
+    return flat;
+  }
 }

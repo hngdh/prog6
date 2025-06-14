@@ -3,8 +3,6 @@ package client.read_mode;
 import client.iostream.Renderer;
 import client.network.ClientNetwork;
 import common.exceptions.LogException;
-import common.exceptions.WrongCommandException;
-
 import java.io.IOException;
 
 /**
@@ -13,6 +11,6 @@ import java.io.IOException;
  * executing commands.
  */
 public interface ReaderMode {
-    void execute(Renderer renderer, ClientNetwork clientNetwork, String commandName, String arg)
-            throws LogException, IOException, WrongCommandException;
+  void execute(Renderer renderer, ClientNetwork clientNetwork, String commandName, String arg)
+      throws LogException, IOException;
 }

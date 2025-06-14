@@ -6,15 +6,15 @@ import common.packets.Request;
 import java.util.List;
 import server.iostream.Receiver;
 
-public class RemoveLower extends Command {
+public class Ping extends Command {
   private Receiver receiver;
 
-  public RemoveLower() {
+  public Ping() {
     super(
-        "remove_lower",
-        "{element}",
-        "remove elements lower than given element",
-        CommandTypes.INPUT_NEEDED,
+        "ping",
+        "",
+        "ping to port and change if needed",
+        CommandTypes.NO_INPUT_NEEDED,
         CommandFormats.WITHOUT_ARG);
   }
 
@@ -24,7 +24,6 @@ public class RemoveLower extends Command {
 
   @Override
   public List<String> execute(Request request) {
-
-    return receiver.remove_lower(request);
+    return receiver.ping();
   }
 }

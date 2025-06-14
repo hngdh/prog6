@@ -5,7 +5,7 @@ package common.enums;
  * house.
  */
 public enum HouseDataTypes {
-    STRING,
-    YEAR,
-    LIFTS
+  STRING,
+  YEAR,
+  LIFTS
 }

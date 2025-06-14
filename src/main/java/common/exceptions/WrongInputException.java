@@ -6,11 +6,10 @@ package common.exceptions;
  * message to inform the user about the invalid input.
  */
 public class WrongInputException extends RuntimeException {
-    public WrongInputException() {
-    }
+  public WrongInputException() {}
 
-    @Override
-    public String toString() {
-        return "Wrong input!";
-    }
+  @Override
+  public String toString() {
+    return "Wrong input!";
+  }
 }
