@@ -1,0 +1,9 @@
+14-06-25 02:34:34.671 [main] INFO  server_info - Server started
+14-06-25 02:34:34.855 [main] INFO  server_info - Listening on port 404
+14-06-25 02:37:48.918 [Thread-0] INFO  server_info - Exit detected, saving files...
+14-06-25 02:48:20.227 [main] INFO  server_info - Server started
+14-06-25 02:48:20.460 [main] INFO  server_info - Listening on port 4004
+14-06-25 02:50:20.840 [Thread-0] INFO  server_info - Exit detected, saving files...
+14-06-25 02:53:40.175 [main] INFO  server_info - Server started
+14-06-25 02:53:40.301 [main] INFO  server_info - Listening on port 4004
+14-06-25 02:59:16.182 [Thread-0] INFO  server_info - Exit detected, saving files...

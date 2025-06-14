@@ -1,0 +1,7 @@
+df
+df
+s
+d
+df
+
+execute_script client/script2.txt
