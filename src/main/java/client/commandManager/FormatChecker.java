@@ -1,4 +1,4 @@
-package client.command_utils;
+package client.commandManager;
 
 import common.enums.CommandFormats;
 import common.exceptions.WrongCommandException;

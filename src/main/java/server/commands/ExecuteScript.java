@@ -4,7 +4,7 @@ import common.enums.CommandFormats;
 import common.enums.CommandTypes;
 import common.packets.Request;
 import java.util.List;
-import server.iostream.Receiver;
+import server.ioStream.Receiver;
 
 public class ExecuteScript extends Command {
   private Receiver receiver;
@@ -13,7 +13,7 @@ public class ExecuteScript extends Command {
     super(
         "execute_script",
         "file_name",
-        "read and execute script from data_processors. Commands in the script formatted the same as in interactive mode",
+        "read and execute script from dataProcessors. Commands in the script formatted the same as in interactive mode",
         CommandTypes.INPUT_NEEDED,
         CommandFormats.WITH_STRING_ARG);
   }

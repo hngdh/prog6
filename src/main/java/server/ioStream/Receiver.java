@@ -1,4 +1,4 @@
-package server.iostream;
+package server.ioStream;
 
 import common.exceptions.LogException;
 import common.io.LogUtil;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
-import server.command_manager.CommandManager;
+import server.commandManager.CommandManager;
 import server.data.CollectionManager;
 
 /**
@@ -54,13 +54,8 @@ public class Receiver {
   public List<String> help() {
     List<String> result = new ArrayList<>();
     commandManager
-        .getCommandCollection()
-        .forEach(
-            (name, command) -> {
-              if (!name.equals("start") && !name.equals("save")) {
-                result.add(command.getCommandInfo());
-              }
-            });
+        .getClientCommandCollection()
+        .forEach((name, command) -> result.add(command.getCommandInfo()));
     return result;
   }
 
@@ -75,6 +70,7 @@ public class Receiver {
     return result;
   }
 
+  // All methods using stream API
   public List<String> show() {
     List<String> result = new ArrayList<>();
     if (notEmpty()) {
@@ -105,10 +101,13 @@ public class Receiver {
     List<String> result = new ArrayList<>();
     if (notEmpty()) {
       collectionManager.min_by_coordinates();
-      for (Flat flat : collectionManager.getCollection()) {
-        result.addAll(flat.getEverything());
-        result.add("");
-      }
+      collectionManager
+          .getCollection()
+          .forEach(
+              flat -> {
+                result.addAll(flat.getEverything());
+                result.add("");
+              });
     } else {
       result.add("This collection is empty");
     }
@@ -127,12 +126,15 @@ public class Receiver {
     List<String> result = new ArrayList<>();
     if (notEmpty()) {
       String name = request.getArgument();
-      for (Flat flat : collectionManager.getCollection()) {
-        if (flat.getName().contains(name)) {
-          result.addAll(flat.getEverything());
-          result.add("");
-        }
-      }
+      collectionManager
+          .getCollection()
+          .forEach(
+              flat -> {
+                if (flat.getName().contains(name)) {
+                  result.addAll(flat.getEverything());
+                  result.add("");
+                }
+              });
       if (result.isEmpty()) result.add("Nothing found");
     } else {
       result.add("This collection is empty");
@@ -144,10 +146,14 @@ public class Receiver {
     List<String> result = new ArrayList<>();
     if (notEmpty()) {
       LinkedList<Flat> list = new LinkedList<>();
-      for (Flat flat : collectionManager.getCollection())
-        if (flat.getHouse() != null) list.add(flat);
+      collectionManager
+          .getCollection()
+          .forEach(
+              flat -> {
+                if (flat.getHouse() != null) list.add(flat);
+              });
       list.sort(Comparator.comparing(a -> a.getHouse().getName()));
-      for (Flat flat : list) result.add(flat.getPropsHouse().toString());
+      list.forEach(flat -> result.add(flat.getPropsHouse().toString()));
     } else {
       result.add("This collection is empty");
     }

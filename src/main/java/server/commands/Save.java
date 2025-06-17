@@ -4,7 +4,7 @@ import common.enums.CommandFormats;
 import common.enums.CommandTypes;
 import common.packets.Request;
 import java.util.List;
-import server.iostream.Receiver;
+import server.ioStream.Receiver;
 
 public class Save extends Command {
   private Receiver receiver;
@@ -13,7 +13,7 @@ public class Save extends Command {
     super(
         "save",
         "",
-        "save collection to data_processors",
+        "save collection to dataProcessors",
         CommandTypes.NO_INPUT_NEEDED,
         CommandFormats.WITHOUT_ARG);
   }

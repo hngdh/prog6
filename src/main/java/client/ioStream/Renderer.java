@@ -1,4 +1,4 @@
-package client.iostream;
+package client.ioStream;
 
 import common.io.Printer;
 import common.packets.Response;

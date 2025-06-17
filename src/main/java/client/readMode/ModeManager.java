@@ -1,6 +1,6 @@
-package client.read_mode;
+package client.readMode;
 
-import client.iostream.Renderer;
+import client.ioStream.Renderer;
 import client.network.ClientNetwork;
 import common.exceptions.LogException;
 import java.io.IOException;
@@ -8,8 +8,8 @@ import java.util.HashMap;
 
 /**
  * The {@code ModeManager} class manages different reading modes for commands, such as reading from
- * the console or reading from data_processors. It allows associating specific commands with
- * specific {@link ReaderMode} implementations.
+ * the console or reading from dataProcessors. It allows associating specific commands with specific
+ * {@link ReaderMode} implementations.
  */
 public class ModeManager {
   private final HashMap<String, ReaderMode> readModes = new HashMap<>();

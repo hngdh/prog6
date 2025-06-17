@@ -1,11 +1,11 @@
-package client.read_mode;
+package client.readMode;
 
-import client.iostream.Renderer;
+import client.ioStream.Renderer;
 import client.network.ClientNetwork;
-import common.data_processors.InputChecker;
-import common.data_processors.InputReader;
-import common.data_processors.ObjBuilder;
-import common.data_processors.ObjInputChecker;
+import common.dataProcessors.InputChecker;
+import common.dataProcessors.InputReader;
+import common.dataProcessors.ObjBuilder;
+import common.dataProcessors.ObjInputChecker;
 import common.enums.FlatDataTypes;
 import common.enums.HouseDataTypes;
 import common.exceptions.LogException;

@@ -1,12 +1,12 @@
-package client.iostream;
+package client.ioStream;
 
-import client.command_utils.CommandClassifier;
-import client.command_utils.FormatChecker;
+import client.commandManager.CommandClassifier;
+import client.commandManager.FormatChecker;
 import client.network.ClientNetwork;
-import client.read_mode.ModeManager;
-import common.data_processors.InputChecker;
-import common.data_processors.InputReader;
-import common.data_processors.InputSplitter;
+import client.readMode.ModeManager;
+import common.dataProcessors.InputChecker;
+import common.dataProcessors.InputReader;
+import common.dataProcessors.InputSplitter;
 import common.enums.CommandTypes;
 import common.exceptions.LogException;
 import common.exceptions.WrongCommandException;

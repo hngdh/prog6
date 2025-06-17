@@ -1,6 +1,6 @@
-package server.data_processors;
+package server.dataProcessors;
 
-import common.data_processors.ObjInputChecker;
+import common.dataProcessors.ObjInputChecker;
 import common.enums.FlatDataTypes;
 import common.enums.HouseDataTypes;
 import common.exceptions.LogException;
@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  * The {@code FileProcessor} class is responsible for validating and processing data read from a CSV
- * data_processors. It checks the format and validity of the data for both {@link
+ * dataProcessors. It checks the format and validity of the data for both {@link
  * common.objects.Flat} and {@link common.objects.House} objects. It uses {@link ObjInputChecker} to
  * perform specific checks on individual data fields.
  */

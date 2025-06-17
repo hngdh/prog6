@@ -4,7 +4,7 @@ import common.enums.CommandFormats;
 import common.enums.CommandTypes;
 import common.packets.Request;
 import java.util.List;
-import server.iostream.Receiver;
+import server.ioStream.Receiver;
 
 public class Add extends Command {
   private Receiver receiver;

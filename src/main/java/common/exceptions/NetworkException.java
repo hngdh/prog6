@@ -1,6 +1,6 @@
 package common.exceptions;
 
-public class NetworkException extends RuntimeException {
+public class NetworkException extends Exception {
   public NetworkException() {}
 
   @Override

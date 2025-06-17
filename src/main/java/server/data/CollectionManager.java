@@ -1,6 +1,6 @@
 package server.data;
 
-import common.data_processors.InputReader;
+import common.dataProcessors.InputReader;
 import common.exceptions.LogException;
 import common.exceptions.WrongDataException;
 import common.io.LogUtil;
@@ -10,14 +10,14 @@ import common.packets.Request;
 import java.io.IOException;
 import java.util.Comparator;
 import java.util.LinkedList;
-import server.data_processors.CSVReader;
-import server.data_processors.CSVWriter;
+import server.dataProcessors.CSVReader;
+import server.dataProcessors.CSVWriter;
 
 /**
  * The {@code CollectionManager} class manages a collection of {@link Flat} objects stored in a
  * {@link LinkedList}. It provides methods for adding, removing, updating, and retrieving elements
  * from the collection. It also handles saving and loading the collection to/from a CSV
- * data_processors.
+ * dataProcessors.
  */
 public class CollectionManager {
   private final LinkedList<Flat> collection = new LinkedList<>();
@@ -32,7 +32,8 @@ public class CollectionManager {
   }
 
   public void clear() {
-    while (!collection.isEmpty()) collection.removeFirst();
+    //    while (!collection.isEmpty()) collection.removeFirst();
+    collection.clear();
   }
 
   public void sort() {
@@ -60,6 +61,7 @@ public class CollectionManager {
 
   public void add(Request request) {
     Flat flat = request.getFlat();
+    flat.setId(collection.size() + 1);
     collection.add(flat);
   }
 
@@ -74,11 +76,10 @@ public class CollectionManager {
   public void remove_lower(Request request) {
     Flat compareFlat = request.getFlat();
     LinkedList<Flat> tempList = new LinkedList<>(collection);
-    for (Flat flat : tempList) {
-      if (flat.toString().compareTo(compareFlat.toString()) < 0) {
-        collection.remove(flat);
-      }
-    }
+    tempList.forEach(
+        flat -> {
+          if (flat.toString().compareTo(compareFlat.toString()) < 0) collection.remove(flat);
+        });
   }
 
   public void update(Request request) {
@@ -115,6 +116,6 @@ public class CollectionManager {
     } catch (IOException e) {
       LogUtil.logServerError(e);
     }
-    Printer.printResult("Loaded " + collection.size() + " flat(s) from file.");
+    Printer.printResult("Loaded " + collection.size() + " flat(s) from file");
   }
 }

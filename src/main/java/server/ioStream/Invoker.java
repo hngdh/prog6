@@ -1,10 +1,9 @@
-package server.iostream;
+package server.ioStream;
 
 import common.io.Printer;
 import common.packets.Request;
-import java.net.SocketAddress;
 import java.util.List;
-import server.command_manager.CommandManager;
+import server.commandManager.CommandManager;
 import server.commands.Command;
 
 /**
@@ -21,7 +20,7 @@ public class Invoker {
     this.receiver = receiver;
   }
 
-  public List<String> call(SocketAddress port, Request request) {
+  public List<String> call(Request request) {
     Command cmd = commandManager.getCommand(request.getCommand());
     cmd.setReceiver(receiver);
     Printer.printCondition("Executed");

@@ -1,0 +1,27 @@
+17-06-25 14:48:53.126 [main] ERROR server_error - 
+java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method)
+	at java.base/sun.nio.ch.Net.bind(Net.java:555)
+	at java.base/sun.nio.ch.DatagramChannelImpl.bindInternal(DatagramChannelImpl.java:1194)
+	at java.base/sun.nio.ch.DatagramChannelImpl.bind(DatagramChannelImpl.java:1164)
+	at java.base/sun.nio.ch.DatagramSocketAdaptor.bind(DatagramSocketAdaptor.java:107)
+	at server.network.ServerNetwork.init(ServerNetwork.java:36)
+	at Server.main(Server.java:14)
+17-06-25 14:57:22.383 [main] ERROR server_error - 
+java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method)
+	at java.base/sun.nio.ch.Net.bind(Net.java:555)
+	at java.base/sun.nio.ch.DatagramChannelImpl.bindInternal(DatagramChannelImpl.java:1194)
+	at java.base/sun.nio.ch.DatagramChannelImpl.bind(DatagramChannelImpl.java:1164)
+	at java.base/sun.nio.ch.DatagramSocketAdaptor.bind(DatagramSocketAdaptor.java:107)
+	at server.network.ServerNetwork.init(ServerNetwork.java:36)
+	at Server.main(Server.java:14)
+17-06-25 15:21:22.471 [main] ERROR server_error - 
+java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method)
+	at java.base/sun.nio.ch.Net.bind(Net.java:555)
+	at java.base/sun.nio.ch.DatagramChannelImpl.bindInternal(DatagramChannelImpl.java:1194)
+	at java.base/sun.nio.ch.DatagramChannelImpl.bind(DatagramChannelImpl.java:1164)
+	at java.base/sun.nio.ch.DatagramSocketAdaptor.bind(DatagramSocketAdaptor.java:107)
+	at server.network.ServerNetwork.init(ServerNetwork.java:35)
+	at Server.main(Server.java:14)

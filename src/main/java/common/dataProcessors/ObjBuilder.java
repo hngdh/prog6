@@ -1,4 +1,4 @@
-package common.data_processors;
+package common.dataProcessors;
 
 import common.enums.Transport;
 import common.exceptions.LogException;

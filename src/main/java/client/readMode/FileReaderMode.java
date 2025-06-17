@@ -1,9 +1,9 @@
-package client.read_mode;
+package client.readMode;
 
-import client.command_utils.CommandClassifier;
-import client.iostream.Renderer;
+import client.commandManager.CommandClassifier;
+import client.ioStream.Renderer;
 import client.network.ClientNetwork;
-import common.data_processors.*;
+import common.dataProcessors.*;
 import common.enums.CommandTypes;
 import common.enums.FlatDataTypes;
 import common.enums.HouseDataTypes;
@@ -22,7 +22,7 @@ import java.util.List;
 
 /**
  * The {@code FileReaderMode} class implements the {@link ReaderMode} interface and provides
- * functionality to read commands and data from a data_processors and execute them.
+ * functionality to read commands and data from a dataProcessors and execute them.
  */
 public class FileReaderMode implements ReaderMode {
   private final CommandClassifier commandClassifier;
@@ -82,7 +82,7 @@ public class FileReaderMode implements ReaderMode {
     }
   }
 
-  public String getCommand(LinkedList<String> commandList) {
+  public String getCommand(LinkedList<String> commandList) throws WrongFileInputException {
     String input = commandList.getFirst();
     commandList.removeFirst();
     if (input == null || input.isEmpty()) return null;

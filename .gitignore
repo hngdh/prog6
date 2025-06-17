@@ -12,6 +12,10 @@ target/
 *.iml
 *.ipr
 .idea/
+/jar/
+/src/main/resources/client/
+/src/main/resources/
+/src/main/resources/server/
 
 ### Eclipse ###
 .apt_generated
@@ -37,4 +41,3 @@ build/
 
 ### Mac OS ###
 .DS_Store
-/jar/

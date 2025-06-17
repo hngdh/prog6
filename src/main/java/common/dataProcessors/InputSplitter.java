@@ -1,8 +1,8 @@
-package common.data_processors;
+package common.dataProcessors;
 
 /**
- * The {@code InputSplitter} class provides static utility methods for splitting data_processors
- * into two parts, representing command and its argument.
+ * The {@code InputSplitter} class provides static utility methods for splitting dataProcessors into
+ * two parts, representing command and its argument.
  */
 public class InputSplitter {
   public InputSplitter() {}

@@ -1,4 +1,4 @@
-import client.iostream.Controller;
+import client.ioStream.Controller;
 
 /**
  * The {@code Server} class serves as the entry point for the application. It initializes and starts
