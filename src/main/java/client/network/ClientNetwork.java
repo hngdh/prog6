@@ -17,7 +17,7 @@ public class ClientNetwork {
   private final int MAX_PACKET_SIZE = 65536;
   private final ByteBuffer buffer = ByteBuffer.allocate(MAX_PACKET_SIZE);
   private final InputReader reader = new InputReader();
-  private int PORT = 404;
+  private int PORT = 4004;
   private DatagramChannel channel;
   private SocketAddress serverAddress;
 
@@ -76,8 +76,8 @@ public class ClientNetwork {
   public void portResolve() {
     try {
       int port = Integer.parseInt(reader.readLine());
-      if (port > 65535 || port < 0) {
-        Printer.printError("Port number can't exceed range [0-65535]");
+      if (port > 65535 || port < 1025) {
+        Printer.printError("Port number can't exceed range [1025-65535]");
         portResolve();
       } else {
         PORT = port;

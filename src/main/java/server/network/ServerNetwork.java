@@ -21,7 +21,7 @@ public class ServerNetwork {
   private final int MAX_PACKET_SIZE = 65536;
   private final ByteBuffer buffer = ByteBuffer.allocate(MAX_PACKET_SIZE);
   private final InputReader reader = new InputReader();
-  private int PORT = 404;
+  private int PORT = 4004;
   private Handler handler;
   private Selector selector;
   private boolean isAwaken;
@@ -55,8 +55,8 @@ public class ServerNetwork {
   private void portResolve() throws LogException {
     try {
       int port = Integer.parseInt(reader.readLine());
-      if (port > 65535 || port < 0) {
-        Printer.printError("Port number can't exceed range [0-65535]");
+      if (port > 65535 || port < 1025) {
+        Printer.printError("Port number can't exceed range [1025-65535]");
         portResolve();
       } else {
         PORT = port;
@@ -71,7 +71,7 @@ public class ServerNetwork {
   public void handle() throws LogException, IOException {
     LogUtil.logServerInfo("Listening on port " + PORT);
     while (isAwaken) {
-      if (selector.select(1) == 0) {
+      if (selector.selectNow() == 0) {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         if (br.ready()) {
           String input = br.readLine();
@@ -109,7 +109,6 @@ public class ServerNetwork {
   public Request readRequest(DatagramChannel dc) throws LogException {
     try {
       SocketAddress remoteAddress = dc.receive(buffer);
-      Printer.printCondition("received");
       buffer.flip();
       ByteArrayInputStream bais = new ByteArrayInputStream(buffer.array(), 0, buffer.limit());
       ObjectInputStream ois = new ObjectInputStream(bais);

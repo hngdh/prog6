@@ -13,19 +13,5 @@ yes
 1
 1
 1
-update 1
-1
-1
-1
-01-01-0001
-1
-1
-1
-false
-few
-yes
-1
-1
-1
 info
 execute_script client/script.txt
