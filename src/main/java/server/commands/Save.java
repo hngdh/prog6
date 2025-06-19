@@ -13,7 +13,7 @@ public class Save extends Command {
     super(
         "save",
         "",
-        "save collection to dataProcessors",
+        "save collection to file",
         CommandTypes.NO_INPUT_NEEDED,
         CommandFormats.WITHOUT_ARG);
   }

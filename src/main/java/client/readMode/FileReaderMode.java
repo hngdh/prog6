@@ -22,7 +22,7 @@ import java.util.List;
 
 /**
  * The {@code FileReaderMode} class implements the {@link ReaderMode} interface and provides
- * functionality to read commands and data from a dataProcessors and execute them.
+ * functionality to read commands and data from a file and execute them.
  */
 public class FileReaderMode implements ReaderMode {
   private final CommandClassifier commandClassifier;

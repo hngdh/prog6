@@ -13,7 +13,7 @@ public class ExecuteScript extends Command {
     super(
         "execute_script",
         "file_name",
-        "read and execute script from dataProcessors. Commands in the script formatted the same as in interactive mode",
+        "read and execute script from file. Commands in the script formatted the same as in interactive mode",
         CommandTypes.INPUT_NEEDED,
         CommandFormats.WITH_STRING_ARG);
   }

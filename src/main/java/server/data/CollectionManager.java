@@ -17,7 +17,7 @@ import server.dataProcessors.CSVWriter;
  * The {@code CollectionManager} class manages a collection of {@link Flat} objects stored in a
  * {@link LinkedList}. It provides methods for adding, removing, updating, and retrieving elements
  * from the collection. It also handles saving and loading the collection to/from a CSV
- * dataProcessors.
+ * file.
  */
 public class CollectionManager {
   private final LinkedList<Flat> collection = new LinkedList<>();

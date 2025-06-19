@@ -13,7 +13,7 @@ import server.data.CollectionManager;
 
 /**
  * The {@code Controller} class is the main entry point for processing user commands. It initializes
- * and manages various components, including dataProcessors reading, command classification,
+ * and manages various components, including file reading, command classification,
  * execution, and collection management. It interacts with the user through the console, providing
  * instructions and feedback.
  */

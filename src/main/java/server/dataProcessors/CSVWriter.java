@@ -6,9 +6,9 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * The {@code CSVWriter} class is responsible for writing data to a CSV dataProcessors. It takes a
+ * The {@code CSVWriter} class is responsible for writing data to a CSV file. It takes a
  * list of {@link StringBuilder} objects, representing the data to be written, and writes them to
- * the specified dataProcessors.
+ * the specified file.
  */
 public class CSVWriter {
   private final BufferedWriter bufferedWriter;

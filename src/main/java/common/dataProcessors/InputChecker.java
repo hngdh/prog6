@@ -11,7 +11,7 @@ import java.time.format.DateTimeParseException;
 
 /**
  * The {@code InputChecker} class provides static utility methods for validating user
- * dataProcessors. It includes methods for checking the general format of dataProcessors, validating
+ * input. It includes methods for checking the general format of input, validating
  * strings, checking if a string represents an integer, determining if a string is empty, and
  * prompting the user for a yes/no confirmation.
  */

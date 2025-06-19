@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 /**
  * The {@code ModeManager} class manages different reading modes for commands, such as reading from
- * the console or reading from dataProcessors. It allows associating specific commands with specific
+ * the console or reading from file. It allows associating specific commands with specific
  * {@link ReaderMode} implementations.
  */
 public class ModeManager {
