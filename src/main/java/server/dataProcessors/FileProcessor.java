@@ -15,9 +15,9 @@ import java.util.List;
 
 /**
  * The {@code FileProcessor} class is responsible for validating and processing data read from a CSV
- * file. It checks the format and validity of the data for both {@link
- * common.objects.Flat} and {@link common.objects.House} objects. It uses {@link ObjInputChecker} to
- * perform specific checks on individual data fields.
+ * file. It checks the format and validity of the data for both {@link common.objects.Flat} and
+ * {@link common.objects.House} objects. It uses {@link ObjInputChecker} to perform specific checks
+ * on individual data fields.
  */
 public class FileProcessor {
   public FileProcessor() {}

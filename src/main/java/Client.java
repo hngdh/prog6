@@ -6,8 +6,12 @@ import client.ioStream.Controller;
  */
 public class Client {
   public static void main(String[] args) {
+    String port;
+    if (args.length != 0) {
+      port = args[0];
+    } else port = "4004";
     Controller controller = new Controller();
-    controller.prepare();
+    controller.prepare(port);
     controller.run();
   }
 }

@@ -17,13 +17,13 @@ public class ClientNetwork {
   private final int MAX_PACKET_SIZE = 65536;
   private final ByteBuffer buffer = ByteBuffer.allocate(MAX_PACKET_SIZE);
   private final InputReader reader = new InputReader();
-  private int PORT = 4004;
+  private int PORT;
   private DatagramChannel channel;
   private SocketAddress serverAddress;
 
-  public ClientNetwork() {
+  public ClientNetwork(String port) {
     reader.setReader();
-    ping();
+    portResolve(port);
   }
 
   public void connect() {
@@ -58,7 +58,6 @@ public class ClientNetwork {
     return null;
   }
 
-  // Configurable port
   public void ping() {
     Request request = new Request("ping", null, null);
     try {
@@ -68,25 +67,39 @@ public class ClientNetwork {
       Printer.printInfo("Connected on port " + PORT);
       shutdown();
     } catch (NetworkException e) {
-      Printer.printCondition("Server not established on port " + PORT + ", please choose another");
-      portResolve();
+      Printer.printCondition("Server not established on port " + PORT);
+      exit();
     }
   }
 
-  public void portResolve() {
+  public void portResolve(String port) {
     try {
-      int port = Integer.parseInt(reader.readLine());
-      if (port > 65535 || port < 1025) {
+      int PORT = Integer.parseInt(port);
+      if (PORT > 65535 || PORT < 1025) {
         Printer.printError("Port number can't exceed range [1025-65535]");
-        portResolve();
+        exit();
       } else {
-        PORT = port;
+        this.PORT = PORT;
         ping();
       }
-    } catch (IOException | NumberFormatException f) {
-      Printer.printError("Wrong input/ number format");
-      portResolve();
+    } catch (NumberFormatException f) {
+      Printer.printError("Wrong input format");
+      exit();
     }
+  }
+
+  private void exit() {
+    System.exit(0);
+  }
+
+  private String readInput() {
+    try {
+      return reader.readLine();
+    } catch (IOException e) {
+      Printer.printError("Error processing input");
+      System.exit(0);
+    }
+    return null;
   }
 
   public void sendPacket(DatagramChannel channel, SocketAddress serverAddress, Request request) {

@@ -30,8 +30,8 @@ public class Controller {
     Printer.printInfo("Type 'help' for instructions");
   }
 
-  public void prepare() {
-    clientNetwork = new ClientNetwork();
+  public void prepare(String port) {
+    clientNetwork = new ClientNetwork(port);
     inputReader = new InputReader();
     inputReader.setReader();
     formatChecker = new FormatChecker();

@@ -13,9 +13,9 @@ import server.data.CollectionManager;
 
 /**
  * The {@code Controller} class is the main entry point for processing user commands. It initializes
- * and manages various components, including file reading, command classification,
- * execution, and collection management. It interacts with the user through the console, providing
- * instructions and feedback.
+ * and manages various components, including file reading, command classification, execution, and
+ * collection management. It interacts with the user through the console, providing instructions and
+ * feedback.
  */
 public class Handler {
   private InputReader inputReader;
