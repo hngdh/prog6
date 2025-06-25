@@ -1,22 +1,49 @@
 <configuration>
-    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <appender name="server_console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
-    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <file>src\main\resources\log.log</file>
+    <appender name="server_error" class="ch.qos.logback.core.FileAppender">
+        <file>server/logError.log</file>
         <encoder>
-            <pattern> %d{dd-MM-yy HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <pattern>%d{dd-MM-yy HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
-    <root level="DEBUG">
-        <appender-ref ref="CONSOLE"/>
-        <appender-ref ref="FILE"/>
-    </root>
-    <root level="ERROR">
-        <appender-ref ref="FILE"/>
-    </root>
+    <appender name="server_info" class="ch.qos.logback.core.FileAppender">
+        <file>server/logInfo.log</file>
+        <encoder>
+            <pattern>%d{dd-MM-yy HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="client_error" class="ch.qos.logback.core.FileAppender">
+        <file>client/logError.log</file>
+        <encoder>
+            <pattern>%d{dd-MM-yy HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="client_info" class="ch.qos.logback.core.FileAppender">
+        <file>client/logInfo.log</file>
+        <encoder>
+            <pattern>%d{dd-MM-yy HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <logger name="server_error" level="ERROR" additivity="false">
+        <appender-ref ref="server_error"/>
+    </logger>
+    <logger name="server_info" level="INFO" additivity="false">
+        <appender-ref ref="server_info"/>
+        <appender-ref ref="server_console"/>
+    </logger>
+    <logger name="client_error" level="ERROR" additivity="false">
+        <appender-ref ref="client_error"/>
+    </logger>
+    <logger name="client_info" level="INFO" additivity="false">
+        <appender-ref ref="client_info"/>
+    </logger>
 </configuration>

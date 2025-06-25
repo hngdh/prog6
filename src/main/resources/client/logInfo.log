@@ -1,0 +1,105 @@
+19-06-25 14:32:03.218 [main] INFO  client_info - Sending 'info' from /127.0.0.1:49889
+19-06-25 14:32:03.252 [main] INFO  client_info - Responded from /127.0.0.1:49889
+19-06-25 14:34:38.537 [main] INFO  client_info - Sending 'ping' from /127.0.0.1:59284
+19-06-25 14:34:38.561 [main] INFO  client_info - Responded from /127.0.0.1:59284
+19-06-25 14:34:43.190 [main] INFO  client_info - Sending 'ping' from /127.0.0.1:52766
+19-06-25 14:34:43.193 [main] INFO  client_info - Responded from /127.0.0.1:52766
+19-06-25 14:35:29.654 [main] INFO  client_info - Sending 'ping' from /127.0.0.1:58034
+19-06-25 14:35:29.679 [main] INFO  client_info - Responded from /127.0.0.1:58034
+19-06-25 14:35:32.432 [main] INFO  client_info - Sending 'ping' from /127.0.0.1:58035
+19-06-25 14:35:32.433 [main] INFO  client_info - Responded from /127.0.0.1:58035
+19-06-25 14:37:02.227 [main] INFO  client_info - Sending 'ping' from /127.0.0.1:49258
+19-06-25 14:37:02.253 [main] INFO  client_info - Responded from /127.0.0.1:49258
+19-06-25 14:37:49.079 [main] INFO  client_info - Sending 'ping' from /127.0.0.1:51029
+19-06-25 14:37:49.100 [main] INFO  client_info - Responded from /127.0.0.1:51029
+19-06-25 14:38:01.695 [main] INFO  client_info - Sending 'help' from /127.0.0.1:56278
+19-06-25 14:38:01.725 [main] INFO  client_info - Responded from /127.0.0.1:56278
+19-06-25 14:38:05.977 [main] INFO  client_info - Sending 'clear' from /127.0.0.1:49536
+19-06-25 14:38:05.980 [main] INFO  client_info - Responded from /127.0.0.1:49536
+19-06-25 14:40:29.509 [main] INFO  client_info - Sending 'show' from /127.0.0.1:59315
+19-06-25 14:40:29.539 [main] INFO  client_info - Responded from /127.0.0.1:59315
+19-06-25 14:40:32.842 [main] INFO  client_info - Sending 'clear' from /127.0.0.1:59316
+19-06-25 14:40:32.843 [main] INFO  client_info - Responded from /127.0.0.1:59316
+19-06-25 14:40:36.251 [main] INFO  client_info - Sending 'info' from /127.0.0.1:59317
+19-06-25 14:40:36.253 [main] INFO  client_info - Responded from /127.0.0.1:59317
+19-06-25 14:56:24.861 [main] INFO  client_info - Sending 'add' from /127.0.0.1:58241
+19-06-25 14:56:24.905 [main] INFO  client_info - Responded from /127.0.0.1:58241
+19-06-25 14:57:04.849 [main] INFO  client_info - Sending 'add' from /127.0.0.1:55646
+19-06-25 14:57:04.854 [main] INFO  client_info - Responded from /127.0.0.1:55646
+19-06-25 14:57:21.533 [main] INFO  client_info - Sending 'info' from /127.0.0.1:55648
+19-06-25 14:57:21.537 [main] INFO  client_info - Responded from /127.0.0.1:55648
+19-06-25 14:57:21.540 [main] INFO  client_info - Sending 'add' from /127.0.0.1:55649
+19-06-25 14:57:21.542 [main] INFO  client_info - Responded from /127.0.0.1:55649
+19-06-25 14:57:21.545 [main] INFO  client_info - Sending 'update' from /127.0.0.1:55650
+19-06-25 14:57:21.548 [main] INFO  client_info - Responded from /127.0.0.1:55650
+19-06-25 14:57:21.549 [main] INFO  client_info - Sending 'info' from /127.0.0.1:55651
+19-06-25 14:57:21.550 [main] INFO  client_info - Responded from /127.0.0.1:55651
+19-06-25 14:57:23.956 [main] INFO  client_info - Sending 'info' from /127.0.0.1:55652
+19-06-25 14:57:23.957 [main] INFO  client_info - Responded from /127.0.0.1:55652
+19-06-25 14:57:28.734 [main] INFO  client_info - Sending 'show' from /127.0.0.1:55653
+19-06-25 14:57:28.741 [main] INFO  client_info - Responded from /127.0.0.1:55653
+19-06-25 14:57:54.582 [main] INFO  client_info - Sending 'show' from /127.0.0.1:56499
+19-06-25 14:57:54.585 [main] INFO  client_info - Responded from /127.0.0.1:56499
+19-06-25 14:58:44.974 [main] INFO  client_info - Sending 'update' from /127.0.0.1:49480
+19-06-25 14:58:44.977 [main] INFO  client_info - Responded from /127.0.0.1:49480
+19-06-25 14:58:47.343 [main] INFO  client_info - Sending 'show' from /127.0.0.1:49481
+19-06-25 14:58:47.346 [main] INFO  client_info - Responded from /127.0.0.1:49481
+19-06-25 14:59:00.027 [main] INFO  client_info - Sending 'ping' from /127.0.0.1:49482
+19-06-25 14:59:00.028 [main] INFO  client_info - Sending 'ping' from /127.0.0.1:49483
+19-06-25 17:46:16.185 [main] INFO  client_info - Sending 'ping' from /127.0.0.1:57906
+19-06-25 17:46:16.197 [main] INFO  client_info - Responded from /127.0.0.1:57906
+19-06-25 17:47:23.334 [main] INFO  client_info - Sending 'ping' from /127.0.0.1:54531
+19-06-25 17:47:23.345 [main] INFO  client_info - Responded from /127.0.0.1:54531
+19-06-25 17:47:25.025 [main] INFO  client_info - Sending 'help' from /127.0.0.1:54532
+19-06-25 17:47:25.028 [main] INFO  client_info - Responded from /127.0.0.1:54532
+19-06-25 17:47:34.009 [main] INFO  client_info - Sending 'help' from /127.0.0.1:65071
+19-06-25 17:47:34.011 [main] INFO  client_info - Responded from /127.0.0.1:65071
+19-06-25 17:47:37.718 [main] INFO  client_info - Sending 'ping' from /127.0.0.1:56748
+19-06-25 17:47:37.728 [main] INFO  client_info - Responded from /127.0.0.1:56748
+19-06-25 17:47:38.697 [main] INFO  client_info - Sending 'help' from /127.0.0.1:56749
+19-06-25 17:47:38.698 [main] INFO  client_info - Responded from /127.0.0.1:56749
+19-06-25 17:48:51.279 [main] INFO  client_info - Sending 'ping' from /127.0.0.1:64470
+19-06-25 17:48:51.291 [main] INFO  client_info - Responded from /127.0.0.1:64470
+19-06-25 17:48:53.005 [main] INFO  client_info - Sending 'ping' from /127.0.0.1:64471
+19-06-25 17:48:53.007 [main] INFO  client_info - Responded from /127.0.0.1:64471
+19-06-25 17:49:16.526 [main] INFO  client_info - Sending 'ping' from /127.0.0.1:54907
+19-06-25 17:49:16.541 [main] INFO  client_info - Responded from /127.0.0.1:54907
+19-06-25 17:49:19.954 [main] INFO  client_info - Sending 'ping' from /127.0.0.1:54908
+19-06-25 17:49:19.955 [main] INFO  client_info - Responded from /127.0.0.1:54908
+19-06-25 17:49:21.888 [main] INFO  client_info - Sending 'help' from /127.0.0.1:54910
+19-06-25 17:49:21.889 [main] INFO  client_info - Responded from /127.0.0.1:54910
+19-06-25 20:10:31.483 [main] INFO  client_info - Sending 'ping' from /127.0.0.1:54991
+19-06-25 20:11:00.407 [main] INFO  client_info - Sending 'ping' from /127.0.0.1:54993
+19-06-25 20:11:00.457 [main] INFO  client_info - Responded from /127.0.0.1:54993
+19-06-25 20:11:03.420 [main] INFO  client_info - Sending 'help' from /127.0.0.1:54994
+19-06-25 20:11:03.423 [main] INFO  client_info - Responded from /127.0.0.1:54994
+19-06-25 20:16:17.446 [main] INFO  client_info - Sending 'ping' from /127.0.0.1:55716
+19-06-25 20:16:17.463 [main] INFO  client_info - Responded from /127.0.0.1:55716
+19-06-25 20:16:21.747 [main] INFO  client_info - Sending 'help' from /127.0.0.1:55717
+19-06-25 20:16:21.750 [main] INFO  client_info - Responded from /127.0.0.1:55717
+19-06-25 20:40:13.486 [main] INFO  client_info - Sending 'ping' from /127.0.0.1:50064
+19-06-25 20:40:13.494 [main] INFO  client_info - Sending 'ping' from /127.0.0.1:50065
+19-06-25 20:43:59.865 [main] INFO  client_info - Sending 'ping' from /127.0.0.1:50070
+19-06-25 20:44:29.463 [main] INFO  client_info - Sending 'ping' from /127.0.0.1:50071
+19-06-25 20:47:44.051 [main] INFO  client_info - Sending 'ping' from /127.0.0.1:50075
+19-06-25 20:49:25.604 [main] INFO  client_info - Sending 'ping' from /127.0.0.1:50078
+19-06-25 20:49:38.674 [main] INFO  client_info - Sending 'ping' from /127.0.0.1:50079
+19-06-25 20:54:16.279 [main] INFO  client_info - Sending 'ping' from /127.0.0.1:50085
+19-06-25 20:54:19.395 [main] INFO  client_info - Sending 'ping' from /127.0.0.1:50086
+19-06-25 20:54:21.279 [main] INFO  client_info - Sending 'ping' from /127.0.0.1:50087
+19-06-25 20:54:24.698 [main] INFO  client_info - Sending 'ping' from /127.0.0.1:50088
+19-06-25 20:57:14.411 [main] INFO  client_info - Sending 'ping' from /127.0.0.1:50092
+19-06-25 20:58:38.218 [main] INFO  client_info - Sending 'ping' from /127.0.0.1:50094
+19-06-25 20:59:10.060 [main] INFO  client_info - Sending 'ping' from /127.0.0.1:50096
+19-06-25 21:03:47.240 [main] INFO  client_info - Sending 'ping' from /127.0.0.1:50101
+19-06-25 21:03:47.259 [main] INFO  client_info - Responded from /127.0.0.1:50101
+19-06-25 21:03:53.035 [main] INFO  client_info - Sending 'help' from /127.0.0.1:50102
+19-06-25 21:03:53.036 [main] INFO  client_info - Sending 'ping' from /127.0.0.1:50103
+19-06-25 21:08:29.346 [main] INFO  client_info - Sending 'ping' from /127.0.0.1:50109
+19-06-25 21:08:29.361 [main] INFO  client_info - Responded from /127.0.0.1:50109
+19-06-25 21:08:30.514 [main] INFO  client_info - Sending 'help' from /127.0.0.1:50110
+19-06-25 21:08:30.517 [main] INFO  client_info - Responded from /127.0.0.1:50110
+19-06-25 21:08:33.714 [main] INFO  client_info - Sending 'sort' from /127.0.0.1:50111
+19-06-25 21:08:33.718 [main] INFO  client_info - Responded from /127.0.0.1:50111
+19-06-25 21:08:34.439 [main] INFO  client_info - Sending 'show' from /127.0.0.1:50112
+19-06-25 21:08:34.449 [main] INFO  client_info - Responded from /127.0.0.1:50112
